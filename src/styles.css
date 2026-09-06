@@ -132,6 +132,20 @@ section{margin-top:34px;}
 .alt.empty{opacity:.6;display:flex;align-items:center;justify-content:center;text-align:center;
   font-size:.85rem;color:var(--ink-faint);}
 
+/* เลือกตัวติดตั้งได้ */
+.selectable{cursor:pointer;transition:box-shadow .15s,border-color .15s,transform .08s;}
+.alt.selectable:hover{border-color:var(--accent);}
+#recoCard.selectable:hover{box-shadow:0 0 0 2px var(--accent-wash), var(--shadow);}
+.selectable:active{transform:translateY(1px);}
+.selectable:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.alt.selected{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-wash);}
+#recoCard.selected{box-shadow:0 0 0 2px var(--accent), var(--shadow);}
+.pick-tag{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;
+  color:#fff;background:var(--accent);border-radius:20px;padding:2px 9px;margin-left:auto;}
+.alt.selected .an::after{content:"· เลือกแล้ว";font-family:var(--mono);font-size:10px;color:var(--accent-deep);
+  margin-left:8px;font-weight:600;letter-spacing:.03em;}
+.pick-hint{font-size:.8rem;color:var(--ink-faint);margin-top:20px;}
+
 .segmented{display:inline-flex;background:var(--surface-2);border:1px solid var(--line-strong);
   border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap;}
 .tab{font-family:var(--sans);font-size:.88rem;font-weight:600;border:none;background:transparent;

@@ -21,14 +21,17 @@ const state: State = {
 // เริ่มด้วย fallback ให้หน้าวาดได้ทันที แล้วค่อยแทนด้วย models.json
 let models: Model[] = FALLBACK_MODELS;
 let generatedAt: string | undefined;
+// tag ของโมเดลที่ผู้ใช้กดเลือกให้ติดตั้ง (undefined = ใช้ตัวแนะนำ)
+let selectedTag: string | undefined;
 
 function render(): void {
-  renderAll(state, models, generatedAt);
+  renderAll(state, models, generatedAt, selectedTag);
 }
 
 function wire(): void {
   $("scanBtn").addEventListener("click", async () => {
     await scan(state);
+    selectedTag = undefined; // สเปกเปลี่ยน -> กลับไปใช้ตัวแนะนำ
     syncInputs(state);
     render();
     document.querySelector(".sec-head")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -37,22 +40,25 @@ function wire(): void {
   ($("ram") as HTMLInputElement).addEventListener("input", (e) => {
     state.ram = Math.max(1, +(e.target as HTMLInputElement).value || 1);
     state.ramDet = "ตั้งค่าเอง";
+    selectedTag = undefined;
     render();
   });
   ($("vram") as HTMLInputElement).addEventListener("input", (e) => {
     state.vram = Math.max(0, +(e.target as HTMLInputElement).value || 0);
     state.vramDet = "ตั้งค่าเอง";
+    selectedTag = undefined;
     render();
   });
   ($("gpuClass") as HTMLSelectElement).addEventListener("change", (e) => {
     state.gpuClass = (e.target as HTMLSelectElement).value as GpuClass;
     if (state.gpuClass !== "discrete") state.vram = state.gpuClass === "apple" ? state.ram : 0;
+    selectedTag = undefined;
     syncInputs(state);
     render();
   });
   ($("os") as HTMLSelectElement).addEventListener("change", (e) => {
     state.os = (e.target as HTMLSelectElement).value as OS;
-    render();
+    render(); // เปลี่ยน OS ไม่กระทบตัวที่เลือก
   });
 
   document.querySelectorAll<HTMLButtonElement>("#taskTabs .tab").forEach((t) => {
@@ -60,8 +66,34 @@ function wire(): void {
       document.querySelectorAll("#taskTabs .tab").forEach((x) => x.setAttribute("aria-selected", "false"));
       t.setAttribute("aria-selected", "true");
       state.task = t.dataset.task as Cat;
+      selectedTag = undefined; // งานเปลี่ยน -> รายการเปลี่ยน กลับไปใช้ตัวแนะนำ
       render();
     });
+  });
+
+  // เลือกตัวที่จะติดตั้ง: กดการ์ดแนะนำ/เบากว่า/จัดเต็ม
+  ["recoCard", "altLight", "altHeavy"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.tabIndex = 0;
+      el.setAttribute("role", "button");
+    }
+  });
+  function pick(target: HTMLElement | null): void {
+    const card = target?.closest?.("[data-tag].selectable") as HTMLElement | null;
+    const tag = card?.dataset.tag;
+    if (!tag) return;
+    selectedTag = tag;
+    render();
+    document.getElementById("cmdRun")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+  document.addEventListener("click", (e) => pick(e.target as HTMLElement));
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const card = (e.target as HTMLElement).closest?.("[data-tag].selectable");
+    if (!card) return;
+    e.preventDefault();
+    pick(e.target as HTMLElement);
   });
 
   document.addEventListener("click", (e) => {

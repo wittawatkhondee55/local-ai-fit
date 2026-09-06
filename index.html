@@ -80,8 +80,8 @@
           <button class="tab" role="tab" data-task="reasoning" aria-selected="false">คิดวิเคราะห์</button>
         </div>
       </div>
-      <div class="panel pad reco">
-        <div class="verdict" id="verdict"><span class="lamp lamp-good"></span><span id="verdictText">รันได้สบาย</span></div>
+      <div class="panel pad reco selectable" id="recoCard">
+        <div class="verdict" id="verdict"><span class="lamp lamp-good"></span><span id="verdictText">รันได้สบาย</span><span class="pick-tag" id="mActive">จะติดตั้งตัวนี้</span></div>
         <div class="model-name" id="mName">—</div>
         <p class="model-sub" id="mDesc">—</p>
         <div class="chips" id="mChips"></div>
@@ -97,12 +97,13 @@
           </div>
         </div>
 
+        <div class="pick-hint">👆 กดการ์ดด้านล่าง (หรือการ์ดนี้) เพื่อเลือกตัวที่จะติดตั้ง</div>
         <div class="alts">
-          <div class="alt" id="altLight">
+          <div class="alt selectable" id="altLight">
             <div class="role">เบากว่า · ลื่นสุด</div>
             <div class="an">—</div><div class="ad">—</div>
           </div>
-          <div class="alt" id="altHeavy">
+          <div class="alt selectable" id="altHeavy">
             <div class="role">จัดเต็ม · ถ้ายอมช้าลง</div>
             <div class="an">—</div><div class="ad">—</div>
           </div>
@@ -125,7 +126,7 @@
           <div class="step">
             <div class="step-n">2</div>
             <div class="step-body">
-              <div class="st">ดาวน์โหลด + รันโมเดล (ครั้งแรกโหลด <span id="dlSize">~5</span>GB)</div>
+              <div class="st">ดาวน์โหลด + รันโมเดล: <b id="runName" style="color:var(--accent-deep)">—</b> (ครั้งแรกโหลด <span id="dlSize">~5</span>GB)</div>
               <div class="cmd"><code id="cmdRun"></code><button class="copy" data-target="cmdRun">คัดลอก</button></div>
               <div class="altcmd">พิมพ์คำสั่งนี้ใน Terminal / PowerShell แล้วรอโหลดเสร็จ ก็พิมพ์คุยได้เลย</div>
             </div>

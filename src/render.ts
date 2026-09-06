@@ -10,14 +10,16 @@ function gb(x: number): string {
 function chip(k: string, v: string): string {
   return `<span class="chip">${k} <b>${v}</b></span>`;
 }
-function fillAlt(id: string, m: Model | null, desc: string | null, heavy = false): void {
+function fillAlt(id: string, m: Model | null, desc: string | null, selectedTag: string, heavy = false): void {
   const el = $(id);
   if (!m) {
     el.className = "alt empty";
+    delete el.dataset.tag;
     el.textContent = heavy ? "เครื่องนี้จัดเต็มกว่านี้ไม่ไหวแล้ว 👍" : "— ไม่มีรุ่นเบากว่านี้";
     return;
   }
-  el.className = "alt";
+  el.className = "alt selectable" + (m.tag === selectedTag ? " selected" : "");
+  el.dataset.tag = m.tag;
   el.innerHTML =
     `<div class="role">${heavy ? "จัดเต็ม · ถ้ายอมช้าลง" : "เบากว่า · ลื่นสุด"}</div>` +
     `<div class="an"></div><div class="ad"></div>`;
@@ -44,10 +46,19 @@ function renderCatalog(models: Model[], best: Model): void {
     });
 }
 
-export function renderAll(state: State, models: Model[], generatedAt?: string): void {
+export function renderAll(state: State, models: Model[], generatedAt?: string, selectedTag?: string): void {
   const r = recommend(state, models);
   const b = r.b;
   const m = r.best;
+
+  // ตัวที่ผู้ใช้เลือกไว้ (เริ่มต้น = ตัวแนะนำ) ใช้ขับหัวข้อ "ดาวน์โหลด + รันโมเดล"
+  const options = [r.best, r.lighter, r.heavier].filter(Boolean) as Model[];
+  const sel = options.find((o) => o.tag === selectedTag) ?? r.best;
+
+  const recoCard = $("recoCard");
+  recoCard.dataset.tag = r.best.tag;
+  recoCard.classList.toggle("selected", sel === r.best);
+  $("mActive").hidden = sel !== r.best;
 
   $("verdictText").textContent = r.vtxt;
   ($("verdict").querySelector(".lamp") as HTMLElement).className = "lamp lamp-" + r.lamp;
@@ -68,8 +79,8 @@ export function renderAll(state: State, models: Model[], generatedAt?: string): 
   const free = Math.max(b.total - m.needs, 0);
   $("gaugeNums").textContent = `ใช้ ~${gb(used)} / ${gb(b.total)}GB · เหลือ ~${gb(free)}GB`;
 
-  fillAlt("altLight", r.lighter, "ลื่นที่สุด เหลือเครื่องว่างเยอะ");
-  fillAlt("altHeavy", r.heavier, r.heavier ? "ล้นเข้าแรม จะช้าลงแต่ฉลาดกว่า" : null, true);
+  fillAlt("altLight", r.lighter, "ลื่นที่สุด เหลือเครื่องว่างเยอะ", sel.tag);
+  fillAlt("altHeavy", r.heavier, r.heavier ? "ล้นเข้าแรม จะช้าลงแต่ฉลาดกว่า" : null, sel.tag, true);
 
   const inst =
     state.os === "win"
@@ -84,8 +95,9 @@ export function renderAll(state: State, models: Model[], generatedAt?: string): 
       : state.os === "mac"
       ? 'หรือโหลดแอป <a href="https://ollama.com/download/mac" target="_blank" rel="noopener">ollama.com/download/mac</a>'
       : "รองรับ Ubuntu/Debian/Fedora ฯลฯ";
-  $("cmdRun").textContent = "ollama run " + m.tag;
-  $("dlSize").textContent = "~" + gb(m.needs);
+  $("runName").textContent = sel.name;
+  $("cmdRun").textContent = "ollama run " + sel.tag;
+  $("dlSize").textContent = "~" + gb(sel.needs);
 
   const osLabel = state.os === "win" ? "Windows" : state.os === "mac" ? "macOS" : "Linux";
   $("osLine").textContent =
