@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>รัน AI ตัวไหนไหว</title>
+  <meta name="description" content="สแกนสเปกเครื่องในบราวเซอร์ แล้วแนะนำโมเดล Local AI ที่รันได้สบายโดยไม่ทำเครื่องหน่วง พร้อมคำสั่งติดตั้ง">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap">
+</head>
+<body>
+  <button id="themeBtn" class="theme-toggle" type="button" aria-label="สลับธีม"></button>
+  <div class="wrap">
+    <header>
+      <div class="eyebrow"><span class="dot"></span> Local AI · ตรวจในเครื่องคุณล้วนๆ ไม่ส่งข้อมูลออก</div>
+      <h1>รัน AI ตัวไหน<span class="hl">ไหว</span></h1>
+      <p class="lede">สแกนสเปกเครื่องผ่านบราวเซอร์ แล้วเลือกโมเดลที่รัน<b>สบาย</b> — เหลือแรมให้เครื่องทำงานอื่นได้ ไม่ใช่จัดเต็มจนหน่วง พร้อมคำสั่งติดตั้งกดคัดลอกใช้ได้เลย</p>
+    </header>
+
+    <section>
+      <div class="scanrow">
+        <button class="btn btn-primary" id="scanBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h4l2 5 4-13 2 8h6"/></svg>
+          สแกนเครื่องนี้
+        </button>
+        <span class="privacy">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          ทำงานในเครื่องคุณ 100% ไม่มีการอัปโหลด
+        </span>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sec-num">01</span><h2>สเปกที่ตรวจได้</h2></div>
+      <div class="panel pad">
+        <div class="readout-top">
+          <span class="machine" id="osLine">— · —</span>
+          <span class="badge-ex" id="stateBadge">ค่าตัวอย่าง</span>
+        </div>
+        <div class="fields">
+          <div class="field">
+            <label>RAM (แรม) <span class="det" id="ramDet"></span></label>
+            <input type="number" id="ram" min="1" max="512" step="1">
+          </div>
+          <div class="field">
+            <label>ชนิดการ์ดจอ <span class="det" id="gpuDet"></span></label>
+            <select id="gpuClass">
+              <option value="discrete">การ์ดจอแยก NVIDIA / AMD</option>
+              <option value="apple">Apple Silicon (M1/M2/M3/M4)</option>
+              <option value="integrated">การ์ดจอออนบอร์ด / ไม่มีการ์ดแยก</option>
+            </select>
+          </div>
+          <div class="field" id="vramField">
+            <label>VRAM การ์ดจอ (GB) <span class="det" id="vramDet"></span></label>
+            <input type="number" id="vram" min="0" max="192" step="1">
+          </div>
+          <div class="field">
+            <label>ระบบปฏิบัติการ</label>
+            <select id="os">
+              <option value="win">Windows</option>
+              <option value="mac">macOS</option>
+              <option value="linux">Linux</option>
+            </select>
+          </div>
+        </div>
+        <div class="hint">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <span>บราวเซอร์อ่านค่าได้แค่คร่าวๆ (โดยเฉพาะ RAM ที่มักโชว์สูงสุด 8GB และ VRAM ที่เดาจากชื่อรุ่น) — <b>ปรับตัวเลขให้ตรงเครื่องคุณ</b> เพื่อคำแนะนำที่แม่นที่สุด</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sec-num">02</span><h2>โมเดลที่แนะนำ</h2></div>
+      <div style="margin-bottom:14px">
+        <div class="segmented" id="taskTabs" role="tablist" aria-label="เลือกงานที่จะใช้">
+          <button class="tab" role="tab" data-task="general" aria-selected="true">ใช้งานทั่วไป</button>
+          <button class="tab" role="tab" data-task="coding" aria-selected="false">เขียนโค้ด</button>
+          <button class="tab" role="tab" data-task="reasoning" aria-selected="false">คิดวิเคราะห์</button>
+        </div>
+      </div>
+      <div class="panel pad reco">
+        <div class="verdict" id="verdict"><span class="lamp lamp-good"></span><span id="verdictText">รันได้สบาย</span></div>
+        <div class="model-name" id="mName">—</div>
+        <p class="model-sub" id="mDesc">—</p>
+        <div class="chips" id="mChips"></div>
+
+        <div class="gauge-wrap">
+          <div class="gauge-head"><span id="gaugePool">การใช้หน่วยความจำ</span><span id="gaugeNums"></span></div>
+          <div class="gauge">
+            <div class="seg seg-model" id="segModel" style="width:0%"></div>
+          </div>
+          <div class="gauge-legend">
+            <span><span class="sw" style="background:var(--accent)"></span> โมเดลใช้</span>
+            <span><span class="sw" style="background:var(--surface-2);border:1px solid var(--line-strong)"></span> เหลือว่างให้งานอื่น</span>
+          </div>
+        </div>
+
+        <div class="alts">
+          <div class="alt" id="altLight">
+            <div class="role">เบากว่า · ลื่นสุด</div>
+            <div class="an">—</div><div class="ad">—</div>
+          </div>
+          <div class="alt" id="altHeavy">
+            <div class="role">จัดเต็ม · ถ้ายอมช้าลง</div>
+            <div class="an">—</div><div class="ad">—</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sec-num">03</span><h2>ติดตั้งแล้วรันเลย</h2></div>
+      <div class="panel pad">
+        <div class="steps">
+          <div class="step">
+            <div class="step-n">1</div>
+            <div class="step-body">
+              <div class="st">ติดตั้ง Ollama (โปรแกรมรันโมเดล ฟรี)</div>
+              <div class="cmd"><code id="cmdInstall"></code><button class="copy" data-target="cmdInstall">คัดลอก</button></div>
+              <div class="altcmd" id="installAlt"></div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n">2</div>
+            <div class="step-body">
+              <div class="st">ดาวน์โหลด + รันโมเดล (ครั้งแรกโหลด <span id="dlSize">~5</span>GB)</div>
+              <div class="cmd"><code id="cmdRun"></code><button class="copy" data-target="cmdRun">คัดลอก</button></div>
+              <div class="altcmd">พิมพ์คำสั่งนี้ใน Terminal / PowerShell แล้วรอโหลดเสร็จ ก็พิมพ์คุยได้เลย</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n">3</div>
+            <div class="step-body">
+              <div class="st">อยากได้หน้าจอแชตสวยๆ (ไม่บังคับ)</div>
+              <div class="altcmd" style="font-size:.88rem;color:var(--ink-soft)">
+                ใช้ <a href="https://lmstudio.ai" target="_blank" rel="noopener">LM Studio</a> (มี UI ในตัว) หรือ
+                <a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a> (หน้าตาคล้าย ChatGPT ต่อกับ Ollama) —
+                ถ้าจะทำเป็น<b>เว็บให้คนอื่นใช้</b> ต่อ Open WebUI แล้วเปิดพอร์ตออกไปได้เลย
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sec-num">04</span><h2>คลังโมเดล</h2></div>
+      <div class="tablewrap">
+        <table id="catalog">
+          <thead><tr><th>โมเดล</th><th>ขนาด</th><th>ใช้หน่วยความจำ*</th><th>ถนัด</th></tr></thead>
+          <tbody id="catBody"></tbody>
+        </table>
+      </div>
+      <div class="note">
+        <b>* ตัวเลขคือค่าประมาณตอนใช้ quantization Q4</b> (บีบโมเดลให้เล็กลงโดยคุณภาพเสียน้อย) — ค่าจริงขยับตามความยาวบทสนทนา ·
+        รายชื่อ + ขนาดดึงมาจาก Ollama registry อัตโนมัติ <span id="genAt"></span>
+      </div>
+    </section>
+
+    <footer>
+      <span>ตรวจในเครื่อง · ไม่เก็บ ไม่ส่งข้อมูล</span>
+      <span>ขับเคลื่อนด้วย Ollama · โมเดล open-source</span>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

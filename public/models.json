@@ -1,0 +1,321 @@
+{
+  "generatedAt": "2026-09-06T04:28:27.615Z",
+  "source": "ollama registry (registry.ollama.ai)",
+  "models": [
+    {
+      "name": "Qwen2.5 0.5B",
+      "tag": "qwen2.5:0.5b",
+      "size": "0.5B",
+      "cats": [
+        "general"
+      ],
+      "good": "จิ๋ว รันได้ทุกเครื่อง",
+      "needs": 1.1,
+      "bytes": 397807936
+    },
+    {
+      "name": "Llama 3.2 1B",
+      "tag": "llama3.2:1b",
+      "size": "1B",
+      "cats": [
+        "general"
+      ],
+      "good": "เบามาก ตอบไว",
+      "needs": 2,
+      "bytes": 1321082688
+    },
+    {
+      "name": "Qwen2.5-Coder 1.5B",
+      "tag": "qwen2.5-coder:1.5b",
+      "size": "1.5B",
+      "cats": [
+        "coding"
+      ],
+      "good": "เติมโค้ดเครื่องเล็ก",
+      "needs": 1.7,
+      "bytes": 986048576
+    },
+    {
+      "name": "Llama 3.2 3B",
+      "tag": "llama3.2:3b",
+      "size": "3B",
+      "cats": [
+        "general"
+      ],
+      "good": "แชตทั่วไปคุ้มค่า",
+      "needs": 2.7,
+      "bytes": 2019377376
+    },
+    {
+      "name": "Gemma 3 4B",
+      "tag": "gemma3:4b",
+      "size": "4B",
+      "cats": [
+        "general"
+      ],
+      "good": "เล็กแต่ฉลาด อ่านภาพได้",
+      "needs": 4,
+      "bytes": 3338792448
+    },
+    {
+      "name": "DeepSeek-R1 7B",
+      "tag": "deepseek-r1:7b",
+      "size": "7B",
+      "cats": [
+        "reasoning"
+      ],
+      "good": "คิดเป็นขั้นตอน",
+      "needs": 5.4,
+      "bytes": 4683073184
+    },
+    {
+      "name": "Qwen2.5 7B",
+      "tag": "qwen2.5:7b",
+      "size": "7B",
+      "cats": [
+        "general"
+      ],
+      "good": "สมดุลดี ไทยโอเค",
+      "needs": 5.4,
+      "bytes": 4683073952
+    },
+    {
+      "name": "Qwen2.5-Coder 7B",
+      "tag": "qwen2.5-coder:7b",
+      "size": "7B",
+      "cats": [
+        "coding"
+      ],
+      "good": "โค้ดดิ้งตัวคุ้ม",
+      "needs": 5.4,
+      "bytes": 4683074048
+    },
+    {
+      "name": "Llama 3.1 8B",
+      "tag": "llama3.1:8b",
+      "size": "8B",
+      "cats": [
+        "general"
+      ],
+      "good": "อเนกประสงค์ยอดฮิต",
+      "needs": 5.7,
+      "bytes": 4920738944
+    },
+    {
+      "name": "Gemma 3 12B",
+      "tag": "gemma3:12b",
+      "size": "12B",
+      "cats": [
+        "general"
+      ],
+      "good": "ฉลาดขึ้นชัด",
+      "needs": 9.4,
+      "bytes": 8149180896
+    },
+    {
+      "name": "Qwen2.5-Coder 14B",
+      "tag": "qwen2.5-coder:14b",
+      "size": "14B",
+      "cats": [
+        "coding"
+      ],
+      "good": "โค้ดระดับจริงจัง",
+      "needs": 10.3,
+      "bytes": 8988110784
+    },
+    {
+      "name": "Qwen2.5 14B",
+      "tag": "qwen2.5:14b",
+      "size": "14B",
+      "cats": [
+        "general"
+      ],
+      "good": "เก่งขึ้น รอบรู้",
+      "needs": 10.3,
+      "bytes": 8988110688
+    },
+    {
+      "name": "DeepSeek-R1 14B",
+      "tag": "deepseek-r1:14b",
+      "size": "14B",
+      "cats": [
+        "reasoning"
+      ],
+      "good": "เหตุผลแน่นขึ้น",
+      "needs": 10.3,
+      "bytes": 8988109952
+    },
+    {
+      "name": "Gemma 3 27B",
+      "tag": "gemma3:27b",
+      "size": "27B",
+      "cats": [
+        "general"
+      ],
+      "good": "ระดับท็อปที่ยังรันเครื่องเดียวได้",
+      "needs": 20,
+      "bytes": 17396927584
+    },
+    {
+      "name": "Qwen2.5 32B",
+      "tag": "qwen2.5:32b",
+      "size": "32B",
+      "cats": [
+        "general"
+      ],
+      "good": "ใกล้เคียงตัวใหญ่",
+      "needs": 22.8,
+      "bytes": 19851336288
+    },
+    {
+      "name": "Qwen2.5-Coder 32B",
+      "tag": "qwen2.5-coder:32b",
+      "size": "32B",
+      "cats": [
+        "coding"
+      ],
+      "good": "โค้ดดิ้งตัวท็อป",
+      "needs": 22.8,
+      "bytes": 19851336384
+    },
+    {
+      "name": "DeepSeek-R1 32B",
+      "tag": "deepseek-r1:32b",
+      "size": "32B",
+      "cats": [
+        "reasoning"
+      ],
+      "good": "คิดหนักแม่นยำ",
+      "needs": 22.8,
+      "bytes": 19851335552
+    },
+    {
+      "name": "Llama 3.3 70B",
+      "tag": "llama3.3:70b",
+      "size": "70B",
+      "cats": [
+        "general"
+      ],
+      "good": "คุณภาพระดับสูงสุด",
+      "needs": 48.9,
+      "bytes": 42520398528
+    },
+    {
+      "name": "DeepSeek-R1 70B",
+      "tag": "deepseek-r1:70b",
+      "size": "70B",
+      "cats": [
+        "reasoning"
+      ],
+      "good": "เหตุผลระดับสูงสุด",
+      "needs": 48.9,
+      "bytes": 42520395616
+    },
+    {
+      "name": "Phi-4 mini 3.8B",
+      "tag": "phi4-mini",
+      "size": "3.8B",
+      "cats": [
+        "general"
+      ],
+      "good": "จิ๋วแต่แจ๋วจาก Microsoft",
+      "needs": 3.2,
+      "bytes": 2491874624
+    },
+    {
+      "name": "Qwen3 4B",
+      "tag": "qwen3:4b",
+      "size": "4B",
+      "cats": [
+        "general",
+        "reasoning"
+      ],
+      "good": "รุ่นใหม่ เล็กแต่คิดได้",
+      "needs": 3.2,
+      "bytes": 2497280480
+    },
+    {
+      "name": "Qwen3 8B",
+      "tag": "qwen3:8b",
+      "size": "8B",
+      "cats": [
+        "general",
+        "reasoning"
+      ],
+      "good": "รุ่นใหม่ สมดุลดี มีโหมดคิด",
+      "needs": 6,
+      "bytes": 5225374496
+    },
+    {
+      "name": "GPT-OSS 20B",
+      "tag": "gpt-oss:20b",
+      "size": "20B",
+      "cats": [
+        "general",
+        "reasoning"
+      ],
+      "good": "โมเดลเปิดจาก OpenAI มีโหมดคิด",
+      "needs": 15.9,
+      "bytes": 13793422144
+    },
+    {
+      "name": "Qwen3 14B",
+      "tag": "qwen3:14b",
+      "size": "14B",
+      "cats": [
+        "general",
+        "reasoning"
+      ],
+      "good": "รุ่นใหม่ ฉลาดขึ้นชัด",
+      "needs": 10.7,
+      "bytes": 9276184896
+    },
+    {
+      "name": "Phi-4 14B",
+      "tag": "phi4",
+      "size": "14B",
+      "cats": [
+        "general",
+        "reasoning"
+      ],
+      "good": "Microsoft เก่งเหตุผล/คณิต",
+      "needs": 10.4,
+      "bytes": 9053114464
+    },
+    {
+      "name": "Qwen3 30B-A3B",
+      "tag": "qwen3:30b-a3b",
+      "size": "30B MoE",
+      "cats": [
+        "general",
+        "reasoning"
+      ],
+      "good": "MoE เร็ว ฉลาดใกล้ตัวใหญ่",
+      "needs": 21.3,
+      "bytes": 18556685856
+    },
+    {
+      "name": "Qwen3-Coder 30B",
+      "tag": "qwen3-coder:30b",
+      "size": "30B MoE",
+      "cats": [
+        "coding"
+      ],
+      "good": "โค้ดดิ้งรุ่นใหม่ตัวแรง",
+      "needs": 21.3,
+      "bytes": 18556688736
+    },
+    {
+      "name": "Qwen3 32B",
+      "tag": "qwen3:32b",
+      "size": "32B",
+      "cats": [
+        "general",
+        "reasoning"
+      ],
+      "good": "รุ่นใหม่ตัวท็อปรันเครื่องเดียว",
+      "needs": 23.2,
+      "bytes": 20201240160
+    }
+  ]
+}

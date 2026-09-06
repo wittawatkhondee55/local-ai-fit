@@ -1,0 +1,16 @@
+{
+  "name": "local-ai-fit",
+  "version": "1.0.0",
+  "description": "สแกนสเปกเครื่องในบราวเซอร์ แล้วแนะนำโมเดล Local AI ที่รันได้สบาย พร้อมคำสั่งติดตั้ง",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "fetch-models": "node scripts/fetch-models.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vite": "^5.4.0"
+  }
+}
