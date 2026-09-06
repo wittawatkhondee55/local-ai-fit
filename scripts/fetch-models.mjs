@@ -118,7 +118,7 @@ async function main() {
 
   // 1) โมเดลคิวเรต
   for (const s of seed.models) {
-    const model = { name: s.name, tag: s.tag, size: s.size, cats: s.cats, good: s.good, good_en: s.good_en, needs: s.needsFallback };
+    const model = { name: s.name, tag: s.tag, size: s.size, cats: s.cats, good: s.good, good_en: s.good_en, score: s.score, needs: s.needsFallback };
     const [name, ver] = s.tag.split(":");
     try {
       const bytes = await fetchManifestBytes(name, ver);

@@ -158,7 +158,20 @@
     </section>
 
     <section>
-      <div class="sec-head"><span class="sec-num">05</span><h2 data-i18n="sec_catalog"></h2></div>
+      <div class="sec-head"><span class="sec-num">05</span><h2 data-i18n="sec_ranking"></h2></div>
+      <div style="margin-bottom:14px">
+        <div class="segmented" id="rankTabs" role="tablist">
+          <button class="tab" role="tab" data-rank="general" aria-selected="true" data-i18n="task_general"></button>
+          <button class="tab" role="tab" data-rank="coding" aria-selected="false" data-i18n="task_coding"></button>
+          <button class="tab" role="tab" data-rank="reasoning" aria-selected="false" data-i18n="task_reasoning"></button>
+        </div>
+      </div>
+      <div class="panel pad"><div class="ranking" id="rankList"></div></div>
+      <p class="rank-note" data-i18n="ranking_note"></p>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sec-num">06</span><h2 data-i18n="sec_catalog"></h2></div>
       <div class="tablewrap">
         <table id="catalog">
           <thead><tr><th data-i18n="th_model"></th><th data-i18n="th_size"></th><th data-i18n="th_mem"></th><th data-i18n="th_skill"></th></tr></thead>

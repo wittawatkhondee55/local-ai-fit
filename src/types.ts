@@ -18,6 +18,8 @@ export interface Model {
   bytes?: number;
   /** เพิ่มอัตโนมัติจาก library (ยังไม่ได้คิวเรต) */
   auto?: boolean;
+  /** คะแนนคุณภาพโดยประมาณ 0-100 (ค่าคิวเรต ใช้จัดอันดับ) */
+  score?: number;
 }
 
 export interface Catalog {

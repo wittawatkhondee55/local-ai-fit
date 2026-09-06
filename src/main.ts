@@ -3,7 +3,7 @@ import type { Cat, GpuClass, Model, OS, State } from "./types";
 import { FALLBACK_MODELS, loadCatalog } from "./catalog";
 import { scan, detectOS } from "./detect";
 import { classifyGPU } from "./gpu-table";
-import { renderAll, renderHowto, syncInputs } from "./render";
+import { renderAll, renderHowto, renderRanking, syncInputs } from "./render";
 import { initTheme } from "./theme";
 import { applyStatic, getLang, setLang, t, type Lang } from "./i18n";
 
@@ -23,9 +23,11 @@ const state: State = {
 let models: Model[] = FALLBACK_MODELS;
 let generatedAt: string | undefined;
 let selectedTag: string | undefined;
+let rankCat: Cat = "general";
 
 function render(): void {
   renderAll(state, models, generatedAt, selectedTag);
+  renderRanking(models, rankCat);
 }
 function updateLangBtn(): void {
   $("langBtn").textContent = getLang() === "th" ? "EN" : "ไทย";
@@ -100,6 +102,15 @@ function wire(): void {
       state.task = t2.dataset.task as Cat;
       selectedTag = undefined;
       render();
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("#rankTabs .tab").forEach((t2) => {
+    t2.addEventListener("click", () => {
+      document.querySelectorAll("#rankTabs .tab").forEach((x) => x.setAttribute("aria-selected", "false"));
+      t2.setAttribute("aria-selected", "true");
+      rankCat = t2.dataset.rank as Cat;
+      renderRanking(models, rankCat);
     });
   });
 

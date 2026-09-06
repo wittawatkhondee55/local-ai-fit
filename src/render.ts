@@ -71,6 +71,29 @@ function renderCatalog(models: Model[], best: Model): void {
     });
 }
 
+export function renderRanking(models: Model[], cat: Cat): void {
+  const box = $("rankList");
+  box.innerHTML = "";
+  const list = models
+    .filter((m) => !m.auto && typeof m.score === "number" && m.cats.includes(cat))
+    .sort((a, b) => (b.score as number) - (a.score as number));
+  const max = list.length ? (list[0].score as number) : 100;
+  list.forEach((m, i) => {
+    const row = document.createElement("div");
+    row.className = "rank-row" + (i < 3 ? " top" : "");
+    const medal = ["🥇", "🥈", "🥉"][i] ?? String(i + 1);
+    const pct = Math.max(6, ((m.score as number) / max) * 100);
+    row.innerHTML =
+      `<span class="rank-no">${medal}</span>` +
+      `<div class="rank-main">` +
+      `<div class="rank-name">${m.name}</div>` +
+      `<div class="rank-bar"><div class="rank-fill" style="width:${pct}%"></div></div>` +
+      `</div>` +
+      `<span class="rank-score">${m.score}</span>`;
+    box.appendChild(row);
+  });
+}
+
 export function renderHowto(): void {
   const box = $("howtoList");
   box.innerHTML = "";
