@@ -171,6 +171,10 @@ tr.hit td{background:var(--accent-wash);}
 tr.hit td.name::after{content:"แนะนำ";font-family:var(--mono);font-size:10px;color:#fff;background:var(--accent);
   padding:2px 7px;border-radius:20px;margin-left:8px;vertical-align:middle;}
 
+.auto-badge{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-faint);border:1px solid var(--line-strong);border-radius:20px;padding:1px 6px;
+  margin-left:6px;vertical-align:middle;}
+
 .note{background:var(--surface);border:1px dashed var(--line-strong);border-radius:var(--radius);
   padding:16px 18px;font-size:.86rem;color:var(--ink-soft);margin-top:20px;}
 .note b{color:var(--ink)}

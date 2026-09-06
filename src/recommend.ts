@@ -23,8 +23,11 @@ export function computeBudget(s: State): Budget {
 }
 
 function poolFor(models: Model[], task: Cat): Model[] {
-  let list = models.filter((m) => m.cats.includes(task));
-  if (list.length < 3) list = models.filter((m) => m.cats.includes("general") || m.cats.includes(task));
+  // แนะนำจากรายการคิวเรตเท่านั้น (ข้ามตัว auto) เพื่อคุมคุณภาพคำแนะนำ
+  const curated = models.filter((m) => !m.auto);
+  const base = curated.length >= 3 ? curated : models;
+  let list = base.filter((m) => m.cats.includes(task));
+  if (list.length < 3) list = base.filter((m) => m.cats.includes("general") || m.cats.includes(task));
   return list.slice().sort((a, b) => a.needs - b.needs);
 }
 

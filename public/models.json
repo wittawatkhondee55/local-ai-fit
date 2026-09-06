@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T04:28:27.615Z",
+  "generatedAt": "2026-09-06T04:42:49.629Z",
   "source": "ollama registry (registry.ollama.ai)",
   "models": [
     {
@@ -316,6 +316,486 @@
       "good": "รุ่นใหม่ตัวท็อปรันเครื่องเดียว",
       "needs": 23.2,
       "bytes": 20201240160
+    },
+    {
+      "name": "Mistral 7B",
+      "tag": "mistral:7b",
+      "size": "7B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 4372811712,
+      "needs": 5.1,
+      "auto": true
+    },
+    {
+      "name": "Gemma2 2B",
+      "tag": "gemma2:2b",
+      "size": "2B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 1629509152,
+      "needs": 2.3,
+      "auto": true
+    },
+    {
+      "name": "Gemma2 9B",
+      "tag": "gemma2:9b",
+      "size": "9B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 5443143296,
+      "needs": 6.3,
+      "auto": true
+    },
+    {
+      "name": "Gemma2 27B",
+      "tag": "gemma2:27b",
+      "size": "27B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 15628378336,
+      "needs": 18,
+      "auto": true
+    },
+    {
+      "name": "Llama3 8B",
+      "tag": "llama3:8b",
+      "size": "8B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 4661211424,
+      "needs": 5.4,
+      "auto": true
+    },
+    {
+      "name": "Llama3 70B",
+      "tag": "llama3:70b",
+      "size": "70B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 39969732096,
+      "needs": 46,
+      "auto": true
+    },
+    {
+      "name": "Gemma4 12B",
+      "tag": "gemma4:12b",
+      "size": "12B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 7381382048,
+      "needs": 8.5,
+      "auto": true
+    },
+    {
+      "name": "Gemma4 26B",
+      "tag": "gemma4:26b",
+      "size": "26B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 16947541728,
+      "needs": 19.5,
+      "auto": true
+    },
+    {
+      "name": "Gemma4 31B",
+      "tag": "gemma4:31b",
+      "size": "31B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 19868969920,
+      "needs": 22.8,
+      "auto": true
+    },
+    {
+      "name": "Qwen3.5 0.8B",
+      "tag": "qwen3.5:0.8b",
+      "size": "0.8B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 1036034688,
+      "needs": 1.7,
+      "auto": true
+    },
+    {
+      "name": "Qwen3.5 2B",
+      "tag": "qwen3.5:2b",
+      "size": "2B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 2741180928,
+      "needs": 3.4,
+      "auto": true
+    },
+    {
+      "name": "Qwen3.5 4B",
+      "tag": "qwen3.5:4b",
+      "size": "4B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 3389971840,
+      "needs": 4.1,
+      "auto": true
+    },
+    {
+      "name": "Qwen3.5 9B",
+      "tag": "qwen3.5:9b",
+      "size": "9B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 6594462816,
+      "needs": 7.6,
+      "auto": true
+    },
+    {
+      "name": "Qwen3.5 27B",
+      "tag": "qwen3.5:27b",
+      "size": "27B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 17420420832,
+      "needs": 20,
+      "auto": true
+    },
+    {
+      "name": "Phi3 3.8B",
+      "tag": "phi3:3.8b",
+      "size": "3.8B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 2176177120,
+      "needs": 2.9,
+      "auto": true
+    },
+    {
+      "name": "Phi3 14B",
+      "tag": "phi3:14b",
+      "size": "14B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 7897125664,
+      "needs": 9.1,
+      "auto": true
+    },
+    {
+      "name": "Llava 7B",
+      "tag": "llava:7b",
+      "size": "7B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 4108916992,
+      "needs": 4.8,
+      "auto": true
+    },
+    {
+      "name": "Llava 13B",
+      "tag": "llava:13b",
+      "size": "13B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 7365834752,
+      "needs": 8.5,
+      "auto": true
+    },
+    {
+      "name": "Llava 34B",
+      "tag": "llava:34b",
+      "size": "34B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 19466529024,
+      "needs": 22.4,
+      "auto": true
+    },
+    {
+      "name": "Gemma 2B",
+      "tag": "gemma:2b",
+      "size": "2B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 1678447520,
+      "needs": 2.4,
+      "auto": true
+    },
+    {
+      "name": "Gemma 7B",
+      "tag": "gemma:7b",
+      "size": "7B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 5011844064,
+      "needs": 5.8,
+      "auto": true
+    },
+    {
+      "name": "Qwen 0.5B",
+      "tag": "qwen:0.5b",
+      "size": "0.5B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 394990624,
+      "needs": 1.1,
+      "auto": true
+    },
+    {
+      "name": "Qwen 1.8B",
+      "tag": "qwen:1.8b",
+      "size": "1.8B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 1120235328,
+      "needs": 1.8,
+      "auto": true
+    },
+    {
+      "name": "Qwen 4B",
+      "tag": "qwen:4b",
+      "size": "4B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 2330085408,
+      "needs": 3,
+      "auto": true
+    },
+    {
+      "name": "Qwen 7B",
+      "tag": "qwen:7b",
+      "size": "7B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 4511906976,
+      "needs": 5.2,
+      "auto": true
+    },
+    {
+      "name": "Qwen 14B",
+      "tag": "qwen:14b",
+      "size": "14B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 8179322304,
+      "needs": 9.4,
+      "auto": true
+    },
+    {
+      "name": "Llama2 7B",
+      "tag": "llama2:7b",
+      "size": "7B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 3826781184,
+      "needs": 4.5,
+      "auto": true
+    },
+    {
+      "name": "Llama2 13B",
+      "tag": "llama2:13b",
+      "size": "13B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 7366808800,
+      "needs": 8.5,
+      "auto": true
+    },
+    {
+      "name": "Llama2 70B",
+      "tag": "llama2:70b",
+      "size": "70B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 38873223392,
+      "needs": 44.7,
+      "auto": true
+    },
+    {
+      "name": "Qwen3.6 27B",
+      "tag": "qwen3.6:27b",
+      "size": "27B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 16837919680,
+      "needs": 19.4,
+      "auto": true
+    },
+    {
+      "name": "Qwen3.6 35B",
+      "tag": "qwen3.6:35b",
+      "size": "35B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 21718480960,
+      "needs": 25,
+      "auto": true
+    },
+    {
+      "name": "Qwen3.6 35B MoE",
+      "tag": "qwen3.6:35b-a3b",
+      "size": "35B MoE",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 21718480960,
+      "needs": 25,
+      "auto": true
+    },
+    {
+      "name": "Qwen2 0.5B",
+      "tag": "qwen2:0.5b",
+      "size": "0.5B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 352151968,
+      "needs": 1.1,
+      "auto": true
+    },
+    {
+      "name": "Qwen2 1.5B",
+      "tag": "qwen2:1.5b",
+      "size": "1.5B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 934952032,
+      "needs": 1.6,
+      "auto": true
+    },
+    {
+      "name": "Qwen2 7B",
+      "tag": "qwen2:7b",
+      "size": "7B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 4431388192,
+      "needs": 5.1,
+      "auto": true
+    },
+    {
+      "name": "Qwen2 72B",
+      "tag": "qwen2:72b",
+      "size": "72B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "bytes": 41231735264,
+      "needs": 47.4,
+      "auto": true
+    },
+    {
+      "name": "Codellama 7B",
+      "tag": "codellama:7b",
+      "size": "7B",
+      "cats": [
+        "coding"
+      ],
+      "good": "สายเขียนโค้ด (เพิ่มอัตโนมัติ)",
+      "bytes": 3825898144,
+      "needs": 4.5,
+      "auto": true
+    },
+    {
+      "name": "Codellama 13B",
+      "tag": "codellama:13b",
+      "size": "13B",
+      "cats": [
+        "coding"
+      ],
+      "good": "สายเขียนโค้ด (เพิ่มอัตโนมัติ)",
+      "bytes": 7365948416,
+      "needs": 8.5,
+      "auto": true
+    },
+    {
+      "name": "Codellama 34B",
+      "tag": "codellama:34b",
+      "size": "34B",
+      "cats": [
+        "coding"
+      ],
+      "good": "สายเขียนโค้ด (เพิ่มอัตโนมัติ)",
+      "bytes": 19052048512,
+      "needs": 21.9,
+      "auto": true
+    },
+    {
+      "name": "Codellama 70B",
+      "tag": "codellama:70b",
+      "size": "70B",
+      "cats": [
+        "coding"
+      ],
+      "good": "สายเขียนโค้ด (เพิ่มอัตโนมัติ)",
+      "bytes": 38872431040,
+      "needs": 44.7,
+      "auto": true
     }
   ]
 }

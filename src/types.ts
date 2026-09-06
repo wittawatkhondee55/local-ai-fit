@@ -12,6 +12,8 @@ export interface Model {
   good: string;
   /** ขนาดไฟล์จริงจาก Ollama registry (ไบต์) — ใส่โดยสคริปต์ */
   bytes?: number;
+  /** เพิ่มอัตโนมัติจาก library (ยังไม่ได้คิวเรต) */
+  auto?: boolean;
 }
 
 export interface Catalog {

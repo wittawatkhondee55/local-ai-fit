@@ -37,8 +37,9 @@ function renderCatalog(models: Model[], best: Model): void {
       const tr = document.createElement("tr");
       if (m === best) tr.className = "hit";
       const tags = m.cats.map((c) => CAT_TH[c] ?? c).join(", ");
+      const auto = m.auto ? ' <span class="auto-badge" title="เพิ่มอัตโนมัติจาก library">auto</span>' : "";
       tr.innerHTML =
-        `<td class="name">${m.name}</td><td>${m.size}</td><td>~${gb(m.needs)}GB</td><td>${tags}</td>`;
+        `<td class="name">${m.name}${auto}</td><td>${m.size}</td><td>~${gb(m.needs)}GB</td><td>${tags}</td>`;
       tb.appendChild(tr);
     });
 }
