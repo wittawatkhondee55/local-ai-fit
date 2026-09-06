@@ -104,6 +104,11 @@ const AUTO_BLURB = {
   coding: "สายเขียนโค้ด (เพิ่มอัตโนมัติ)",
   reasoning: "สายคิดวิเคราะห์ (เพิ่มอัตโนมัติ)",
 };
+const AUTO_BLURB_EN = {
+  general: "From the Ollama library (auto-added)",
+  coding: "Coding model (auto-added)",
+  reasoning: "Reasoning model (auto-added)",
+};
 
 async function main() {
   const seed = JSON.parse(await readFile(join(__dirname, "models.seed.json"), "utf8"));
@@ -113,7 +118,7 @@ async function main() {
 
   // 1) โมเดลคิวเรต
   for (const s of seed.models) {
-    const model = { name: s.name, tag: s.tag, size: s.size, cats: s.cats, good: s.good, needs: s.needsFallback };
+    const model = { name: s.name, tag: s.tag, size: s.size, cats: s.cats, good: s.good, good_en: s.good_en, needs: s.needsFallback };
     const [name, ver] = s.tag.split(":");
     try {
       const bytes = await fetchManifestBytes(name, ver);
@@ -152,6 +157,7 @@ async function main() {
           size: sizeLabel(t),
           cats,
           good: AUTO_BLURB[cats[0]],
+          good_en: AUTO_BLURB_EN[cats[0]],
           bytes,
           needs: needsFromBytes(bytes),
           auto: true,

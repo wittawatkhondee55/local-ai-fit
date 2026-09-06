@@ -2,8 +2,9 @@ import "./styles.css";
 import type { Cat, GpuClass, Model, OS, State } from "./types";
 import { FALLBACK_MODELS, loadCatalog } from "./catalog";
 import { scan } from "./detect";
-import { renderAll, syncInputs } from "./render";
+import { renderAll, renderHowto, syncInputs } from "./render";
 import { initTheme } from "./theme";
+import { applyStatic, getLang, setLang, t, type Lang } from "./i18n";
 
 const $ = (id: string) => document.getElementById(id) as HTMLElement;
 
@@ -18,20 +19,50 @@ const state: State = {
   live: false,
 };
 
-// เริ่มด้วย fallback ให้หน้าวาดได้ทันที แล้วค่อยแทนด้วย models.json
 let models: Model[] = FALLBACK_MODELS;
 let generatedAt: string | undefined;
-// tag ของโมเดลที่ผู้ใช้กดเลือกให้ติดตั้ง (undefined = ใช้ตัวแนะนำ)
 let selectedTag: string | undefined;
 
 function render(): void {
   renderAll(state, models, generatedAt, selectedTag);
 }
+function updateLangBtn(): void {
+  $("langBtn").textContent = getLang() === "th" ? "EN" : "ไทย";
+}
+function applyAll(): void {
+  applyStatic();
+  renderHowto();
+  updateLangBtn();
+  render();
+}
+
+function copyToClipboard(txt: string, onDone: () => void): void {
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(txt).then(onDone, onDone);
+  } else {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = txt;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+      onDone();
+    } catch {
+      /* ไม่รองรับ clipboard */
+    }
+  }
+}
 
 function wire(): void {
+  $("langBtn").addEventListener("click", () => {
+    setLang(getLang() === "th" ? "en" : ("th" as Lang));
+    applyAll();
+  });
+
   $("scanBtn").addEventListener("click", async () => {
     await scan(state);
-    selectedTag = undefined; // สเปกเปลี่ยน -> กลับไปใช้ตัวแนะนำ
+    selectedTag = undefined;
     syncInputs(state);
     render();
     document.querySelector(".sec-head")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -39,13 +70,13 @@ function wire(): void {
 
   ($("ram") as HTMLInputElement).addEventListener("input", (e) => {
     state.ram = Math.max(1, +(e.target as HTMLInputElement).value || 1);
-    state.ramDet = "ตั้งค่าเอง";
+    state.ramDet = { k: "det_set_manual" };
     selectedTag = undefined;
     render();
   });
   ($("vram") as HTMLInputElement).addEventListener("input", (e) => {
     state.vram = Math.max(0, +(e.target as HTMLInputElement).value || 0);
-    state.vramDet = "ตั้งค่าเอง";
+    state.vramDet = { k: "det_set_manual" };
     selectedTag = undefined;
     render();
   });
@@ -58,20 +89,20 @@ function wire(): void {
   });
   ($("os") as HTMLSelectElement).addEventListener("change", (e) => {
     state.os = (e.target as HTMLSelectElement).value as OS;
-    render(); // เปลี่ยน OS ไม่กระทบตัวที่เลือก
+    render();
   });
 
-  document.querySelectorAll<HTMLButtonElement>("#taskTabs .tab").forEach((t) => {
-    t.addEventListener("click", () => {
+  document.querySelectorAll<HTMLButtonElement>("#taskTabs .tab").forEach((t2) => {
+    t2.addEventListener("click", () => {
       document.querySelectorAll("#taskTabs .tab").forEach((x) => x.setAttribute("aria-selected", "false"));
-      t.setAttribute("aria-selected", "true");
-      state.task = t.dataset.task as Cat;
-      selectedTag = undefined; // งานเปลี่ยน -> รายการเปลี่ยน กลับไปใช้ตัวแนะนำ
+      t2.setAttribute("aria-selected", "true");
+      state.task = t2.dataset.task as Cat;
+      selectedTag = undefined;
       render();
     });
   });
 
-  // เลือกตัวที่จะติดตั้ง: กดการ์ดแนะนำ/เบากว่า/จัดเต็ม
+  // เลือกตัวติดตั้ง
   ["recoCard", "altLight", "altHeavy"].forEach((id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -85,54 +116,51 @@ function wire(): void {
     if (!tag) return;
     selectedTag = tag;
     render();
-    document.getElementById("cmdRun")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    $("cmdRun").scrollIntoView({ behavior: "smooth", block: "center" });
   }
   document.addEventListener("click", (e) => pick(e.target as HTMLElement));
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Enter" && e.key !== " ") return;
-    const card = (e.target as HTMLElement).closest?.("[data-tag].selectable");
-    if (!card) return;
+    if (!(e.target as HTMLElement).closest?.("[data-tag].selectable")) return;
     e.preventDefault();
     pick(e.target as HTMLElement);
   });
 
+  // ปุ่มคัดลอกทีละคำสั่ง
   document.addEventListener("click", (e) => {
     const btn = (e.target as HTMLElement).closest?.(".copy") as HTMLButtonElement | null;
-    if (!btn) return;
-    const target = btn.dataset.target;
-    if (!target) return;
-    const txt = $(target).textContent || "";
-    const done = () => {
-      btn.textContent = "คัดลอกแล้ว ✓";
+    if (!btn || !btn.dataset.target) return;
+    const txt = $(btn.dataset.target).textContent || "";
+    copyToClipboard(txt, () => {
+      btn.textContent = t("copied");
       btn.classList.add("done");
       setTimeout(() => {
-        btn.textContent = "คัดลอก";
+        btn.textContent = t("copy");
         btn.classList.remove("done");
       }, 1600);
-    };
-    if (navigator.clipboard?.writeText) {
-      navigator.clipboard.writeText(txt).then(done, done);
-    } else {
-      try {
-        const ta = document.createElement("textarea");
-        ta.value = txt;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        ta.remove();
-        done();
-      } catch {
-        /* ไม่รองรับ clipboard */
-      }
-    }
+    });
+  });
+
+  // ปุ่มคัดลอกทั้งชุด (ติดตั้ง + รัน)
+  $("copyAll").addEventListener("click", () => {
+    const all = `${$("cmdInstall").textContent}\n${$("cmdRun").textContent}`;
+    const btn = $("copyAll");
+    copyToClipboard(all, () => {
+      btn.textContent = t("copyall_done");
+      btn.classList.add("done");
+      setTimeout(() => {
+        btn.textContent = t("copyall");
+        btn.classList.remove("done");
+      }, 1600);
+    });
   });
 }
 
 async function init(): Promise<void> {
   initTheme();
   wire();
+  applyAll(); // แปลภาษา + วาดครั้งแรกด้วย fallback
   syncInputs(state);
-  render(); // วาดด้วย fallback ก่อน กันหน้าว่าง
   const cat = await loadCatalog();
   models = cat.models;
   generatedAt = cat.generatedAt;

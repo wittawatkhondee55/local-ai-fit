@@ -1,33 +1,45 @@
 import type { Cat, Model, State } from "./types";
 import { recommend } from "./recommend";
 import { shortGPU } from "./gpu-table";
+import { getLang, t, td, HOWTO } from "./i18n";
 
 const $ = (id: string) => document.getElementById(id) as HTMLElement;
 
 function gb(x: number): string {
   return (Math.round(x * 10) / 10).toString().replace(/\.0$/, "");
 }
+/** พื้นที่ดิสก์ที่ต้องใช้ = ขนาดไฟล์จริง (bytes) ถ้าไม่มีก็ประมาณจาก needs */
+function diskGB(m: Model): number {
+  return m.bytes ? m.bytes / 1e9 : m.needs * 0.85;
+}
+function blurb(m: Model): string {
+  return getLang() === "en" ? m.good_en || m.good : m.good;
+}
 function chip(k: string, v: string): string {
   return `<span class="chip">${k} <b>${v}</b></span>`;
 }
-function fillAlt(id: string, m: Model | null, desc: string | null, selectedTag: string, heavy = false): void {
+
+function fillAlt(id: string, m: Model | null, descKey: string | null, selectedTag: string, heavy = false): void {
   const el = $(id);
   if (!m) {
     el.className = "alt empty";
     delete el.dataset.tag;
-    el.textContent = heavy ? "เครื่องนี้จัดเต็มกว่านี้ไม่ไหวแล้ว 👍" : "— ไม่มีรุ่นเบากว่านี้";
+    el.textContent = t(heavy ? "alt_empty_heavy" : "alt_empty_light");
     return;
   }
-  el.className = "alt selectable" + (m.tag === selectedTag ? " selected" : "");
+  const isSel = m.tag === selectedTag;
+  el.className = "alt selectable" + (isSel ? " selected" : "");
   el.dataset.tag = m.tag;
+  const suffix = isSel ? ` <span class="sel-suffix">${t("sel_suffix")}</span>` : "";
   el.innerHTML =
-    `<div class="role">${heavy ? "จัดเต็ม · ถ้ายอมช้าลง" : "เบากว่า · ลื่นสุด"}</div>` +
+    `<div class="role">${t(heavy ? "role_heavy" : "role_light")}</div>` +
     `<div class="an"></div><div class="ad"></div>`;
-  (el.querySelector(".an") as HTMLElement).textContent = m.name;
-  (el.querySelector(".ad") as HTMLElement).textContent = `~${gb(m.needs)}GB · ${desc} · ollama run ${m.tag}`;
+  (el.querySelector(".an") as HTMLElement).innerHTML = m.name + suffix;
+  (el.querySelector(".ad") as HTMLElement).textContent =
+    `~${gb(m.needs)}GB · ${descKey ? t(descKey) : ""} · ollama run ${m.tag}`;
 }
 
-const CAT_TH: Record<Cat, string> = { general: "ทั่วไป", coding: "โค้ด", reasoning: "เหตุผล" };
+const CAT_KEY: Record<Cat, string> = { general: "cat_general", coding: "cat_coding", reasoning: "cat_reasoning" };
 
 function renderCatalog(models: Model[], best: Model): void {
   const tb = $("catBody");
@@ -38,12 +50,23 @@ function renderCatalog(models: Model[], best: Model): void {
     .forEach((m) => {
       const tr = document.createElement("tr");
       if (m === best) tr.className = "hit";
-      const tags = m.cats.map((c) => CAT_TH[c] ?? c).join(", ");
-      const auto = m.auto ? ' <span class="auto-badge" title="เพิ่มอัตโนมัติจาก library">auto</span>' : "";
+      const tags = m.cats.map((c) => t(CAT_KEY[c])).join(", ");
+      const auto = m.auto ? ` <span class="auto-badge" title="auto">auto</span>` : "";
       tr.innerHTML =
         `<td class="name">${m.name}${auto}</td><td>${m.size}</td><td>~${gb(m.needs)}GB</td><td>${tags}</td>`;
       tb.appendChild(tr);
     });
+}
+
+export function renderHowto(): void {
+  const box = $("howtoList");
+  box.innerHTML = "";
+  HOWTO[getLang()].forEach((step) => {
+    const div = document.createElement("div");
+    div.className = "howto-step";
+    div.innerHTML = `<div class="howto-t">${step.t}</div><div class="howto-b">${step.b}</div>`;
+    box.appendChild(div);
+  });
 }
 
 export function renderAll(state: State, models: Model[], generatedAt?: string, selectedTag?: string): void {
@@ -51,7 +74,6 @@ export function renderAll(state: State, models: Model[], generatedAt?: string, s
   const b = r.b;
   const m = r.best;
 
-  // ตัวที่ผู้ใช้เลือกไว้ (เริ่มต้น = ตัวแนะนำ) ใช้ขับหัวข้อ "ดาวน์โหลด + รันโมเดล"
   const options = [r.best, r.lighter, r.heavier].filter(Boolean) as Model[];
   const sel = options.find((o) => o.tag === selectedTag) ?? r.best;
 
@@ -60,28 +82,33 @@ export function renderAll(state: State, models: Model[], generatedAt?: string, s
   recoCard.classList.toggle("selected", sel === r.best);
   $("mActive").hidden = sel !== r.best;
 
-  $("verdictText").textContent = r.vtxt;
+  $("verdictText").textContent = t(r.vkey);
   ($("verdict").querySelector(".lamp") as HTMLElement).className = "lamp lamp-" + r.lamp;
   $("mName").textContent = m.name;
-  $("mDesc").textContent = m.good;
+  $("mDesc").textContent = blurb(m);
   $("mChips").innerHTML =
-    chip("ขนาด", m.size) +
-    chip("ใช้หน่วยความจำ", "~" + gb(m.needs) + "GB") +
-    chip("ความเร็ว", r.speed) +
-    chip("คำสั่ง", m.tag);
+    chip(t("chip_size"), m.size) +
+    chip(t("chip_speed"), t(r.speedKey)) +
+    chip(t("chip_cmd"), m.tag);
+
+  // แถบความต้องการระบบ (แบบ system requirements)
+  $("reqs").innerHTML =
+    `<span class="req"><span class="req-ic">💾</span> ${t("req_disk")}: <b>~${gb(diskGB(m))} GB</b></span>` +
+    `<span class="req"><span class="req-ic">🧠</span> ${t("req_ram")}: <b>~${gb(m.needs)} GB</b></span>`;
 
   const used = Math.min(m.needs, b.total);
   const pct = Math.max(4, Math.min(100, b.total ? (used / b.total) * 100 : 100));
   const seg = $("segModel");
   seg.style.width = pct + "%";
   seg.className = "seg seg-model" + (m.needs > b.budget ? " warn" : "");
-  $("gaugePool").textContent = `หน่วยความจำที่ใช้ (${b.pool})`;
+  $("gaugePool").textContent = t("gauge_pool", { pool: t(b.pool) });
   const free = Math.max(b.total - m.needs, 0);
-  $("gaugeNums").textContent = `ใช้ ~${gb(used)} / ${gb(b.total)}GB · เหลือ ~${gb(free)}GB`;
+  $("gaugeNums").textContent = t("gauge_nums", { used: gb(used), total: gb(b.total), free: gb(free) });
 
-  fillAlt("altLight", r.lighter, "ลื่นที่สุด เหลือเครื่องว่างเยอะ", sel.tag);
-  fillAlt("altHeavy", r.heavier, r.heavier ? "ล้นเข้าแรม จะช้าลงแต่ฉลาดกว่า" : null, sel.tag, true);
+  fillAlt("altLight", r.lighter, "alt_desc_light", sel.tag);
+  fillAlt("altHeavy", r.heavier, r.heavier ? "alt_desc_heavy" : null, sel.tag, true);
 
+  // ขั้นตอนติดตั้ง — ใช้ตัวที่เลือก (sel) ขับ
   const inst =
     state.os === "win"
       ? "winget install Ollama.Ollama"
@@ -89,15 +116,11 @@ export function renderAll(state: State, models: Model[], generatedAt?: string, s
       ? "brew install --cask ollama"
       : "curl -fsSL https://ollama.com/install.sh | sh";
   $("cmdInstall").textContent = inst;
-  $("installAlt").innerHTML =
-    state.os === "win"
-      ? 'ไม่มี winget? โหลดตัวติดตั้ง <a href="https://ollama.com/download/windows" target="_blank" rel="noopener">ollama.com/download/windows</a>'
-      : state.os === "mac"
-      ? 'หรือโหลดแอป <a href="https://ollama.com/download/mac" target="_blank" rel="noopener">ollama.com/download/mac</a>'
-      : "รองรับ Ubuntu/Debian/Fedora ฯลฯ";
-  $("runName").textContent = sel.name;
+  $("installAlt").innerHTML = t(
+    state.os === "win" ? "install_alt_win_html" : state.os === "mac" ? "install_alt_mac_html" : "install_alt_linux_html",
+  );
   $("cmdRun").textContent = "ollama run " + sel.tag;
-  $("dlSize").textContent = "~" + gb(sel.needs);
+  $("step2Title").innerHTML = t("step2_title", { name: sel.name, size: gb(diskGB(sel)) });
 
   const osLabel = state.os === "win" ? "Windows" : state.os === "mac" ? "macOS" : "Linux";
   $("osLine").textContent =
@@ -105,15 +128,15 @@ export function renderAll(state: State, models: Model[], generatedAt?: string, s
     (state.cores ? ` · ${state.cores} cores` : "") +
     (state.gpuName ? ` · ${shortGPU(state.gpuName)}` : "");
   const badge = $("stateBadge");
-  badge.textContent = state.live ? "สแกนจริง" : "ค่าตัวอย่าง";
+  badge.textContent = t(state.live ? "badge_live" : "badge_example");
   badge.className = "badge-ex" + (state.live ? " badge-live" : "");
-  $("ramDet").textContent = state.ramDet ?? "";
-  $("vramDet").textContent = state.vramDet ?? "";
+  $("ramDet").textContent = td(state.ramDet);
+  $("vramDet").textContent = td(state.vramDet);
   $("vramField").hidden = state.gpuClass !== "discrete";
 
   if (generatedAt) {
     const d = new Date(generatedAt);
-    if (!isNaN(d.getTime())) $("genAt").textContent = `· อัปเดตล่าสุด ${d.toISOString().slice(0, 10)}`;
+    if (!isNaN(d.getTime())) $("genAt").textContent = t("gen_at", { date: d.toISOString().slice(0, 10) });
   }
 
   renderCatalog(models, m);

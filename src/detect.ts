@@ -47,26 +47,26 @@ export async function scan(state: State): Promise<void> {
   const dm = (navigator as any).deviceMemory as number | undefined; // GB, มักตันที่ 8
   if (dm) {
     state.ram = dm >= 8 ? Math.max(state.ram, 16) : dm;
-    state.ramDet = dm >= 8 ? "บราวเซอร์บอก ≥8GB — โปรดยืนยัน" : `บราวเซอร์บอก ~${dm}GB`;
+    state.ramDet = dm >= 8 ? { k: "det_ram_ge8" } : { k: "det_ram_approx", v: { n: dm } };
   } else {
-    state.ramDet = "บราวเซอร์อ่านไม่ได้ — กรอกเอง";
+    state.ramDet = { k: "det_ram_unknown" };
   }
 
   state.gpuClass = gcls;
-  state.gpuName = gpuName || "อ่านชื่อการ์ดจอไม่ได้";
+  state.gpuName = gpuName || "";
   if (gcls === "discrete") {
     const v = vramFromName(gpuName);
     if (v) {
       state.vram = v;
-      state.vramDet = `เดาจาก "${gpuName.slice(0, 24)}"`;
+      state.vramDet = { k: "det_vram_guess", v: { gpu: gpuName.slice(0, 24) } };
     } else {
-      state.vramDet = "ไม่รู้จักรุ่นนี้ — กรอกเอง";
+      state.vramDet = { k: "det_vram_unknown" };
     }
   } else if (gcls === "apple") {
-    state.vramDet = "ใช้หน่วยความจำรวมกับ RAM";
+    state.vramDet = { k: "det_vram_apple" };
   } else {
     state.vram = 0;
-    state.vramDet = "ใช้ RAM ร่วม (ไม่มี VRAM แยก)";
+    state.vramDet = { k: "det_vram_integrated" };
   }
 
   state.os = detectOS();

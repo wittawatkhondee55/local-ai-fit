@@ -1,3 +1,5 @@
+import type { DetMsg } from "./i18n";
+
 export type Cat = "general" | "coding" | "reasoning";
 export type GpuClass = "discrete" | "apple" | "integrated";
 export type OS = "win" | "mac" | "linux";
@@ -10,7 +12,9 @@ export interface Model {
   needs: number;
   cats: Cat[];
   good: string;
-  /** ขนาดไฟล์จริงจาก Ollama registry (ไบต์) — ใส่โดยสคริปต์ */
+  /** คำอธิบายภาษาอังกฤษ (ถ้ามี) */
+  good_en?: string;
+  /** ขนาดไฟล์จริงจาก Ollama registry (ไบต์) = พื้นที่ดิสก์ที่ต้องใช้ */
   bytes?: number;
   /** เพิ่มอัตโนมัติจาก library (ยังไม่ได้คิวเรต) */
   auto?: boolean;
@@ -31,8 +35,8 @@ export interface State {
   task: Cat;
   live: boolean;
   cores?: number | null;
-  ramDet?: string;
-  vramDet?: string;
+  ramDet?: DetMsg;
+  vramDet?: DetMsg;
 }
 
 export interface Budget {
@@ -48,8 +52,9 @@ export interface Recommendation {
   lighter: Model | null;
   heavier: Model | null;
   b: Budget;
-  speed: string;
+  /** คีย์ i18n ของความเร็ว/คำตัดสิน */
+  speedKey: string;
+  vkey: string;
   lamp: "good" | "warn" | "bad";
-  vtxt: string;
   comfy: boolean;
 }

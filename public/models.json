@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T04:42:49.629Z",
+  "generatedAt": "2026-09-06T05:30:14.970Z",
   "source": "ollama registry (registry.ollama.ai)",
   "models": [
     {
@@ -10,6 +10,7 @@
         "general"
       ],
       "good": "จิ๋ว รันได้ทุกเครื่อง",
+      "good_en": "Tiny, runs anywhere",
       "needs": 1.1,
       "bytes": 397807936
     },
@@ -21,6 +22,7 @@
         "general"
       ],
       "good": "เบามาก ตอบไว",
+      "good_en": "Very light, fast replies",
       "needs": 2,
       "bytes": 1321082688
     },
@@ -32,6 +34,7 @@
         "coding"
       ],
       "good": "เติมโค้ดเครื่องเล็ก",
+      "good_en": "Code completion on small PCs",
       "needs": 1.7,
       "bytes": 986048576
     },
@@ -43,6 +46,7 @@
         "general"
       ],
       "good": "แชตทั่วไปคุ้มค่า",
+      "good_en": "Great value for general chat",
       "needs": 2.7,
       "bytes": 2019377376
     },
@@ -54,6 +58,7 @@
         "general"
       ],
       "good": "เล็กแต่ฉลาด อ่านภาพได้",
+      "good_en": "Small but smart, reads images",
       "needs": 4,
       "bytes": 3338792448
     },
@@ -65,6 +70,7 @@
         "reasoning"
       ],
       "good": "คิดเป็นขั้นตอน",
+      "good_en": "Thinks step by step",
       "needs": 5.4,
       "bytes": 4683073184
     },
@@ -76,6 +82,7 @@
         "general"
       ],
       "good": "สมดุลดี ไทยโอเค",
+      "good_en": "Well balanced, decent Thai",
       "needs": 5.4,
       "bytes": 4683073952
     },
@@ -87,6 +94,7 @@
         "coding"
       ],
       "good": "โค้ดดิ้งตัวคุ้ม",
+      "good_en": "Best-value coding model",
       "needs": 5.4,
       "bytes": 4683074048
     },
@@ -98,6 +106,7 @@
         "general"
       ],
       "good": "อเนกประสงค์ยอดฮิต",
+      "good_en": "Popular all-rounder",
       "needs": 5.7,
       "bytes": 4920738944
     },
@@ -109,6 +118,7 @@
         "general"
       ],
       "good": "ฉลาดขึ้นชัด",
+      "good_en": "Noticeably smarter",
       "needs": 9.4,
       "bytes": 8149180896
     },
@@ -120,6 +130,7 @@
         "coding"
       ],
       "good": "โค้ดระดับจริงจัง",
+      "good_en": "Serious coding",
       "needs": 10.3,
       "bytes": 8988110784
     },
@@ -131,6 +142,7 @@
         "general"
       ],
       "good": "เก่งขึ้น รอบรู้",
+      "good_en": "Smarter, well-rounded",
       "needs": 10.3,
       "bytes": 8988110688
     },
@@ -142,6 +154,7 @@
         "reasoning"
       ],
       "good": "เหตุผลแน่นขึ้น",
+      "good_en": "Stronger reasoning",
       "needs": 10.3,
       "bytes": 8988109952
     },
@@ -153,6 +166,7 @@
         "general"
       ],
       "good": "ระดับท็อปที่ยังรันเครื่องเดียวได้",
+      "good_en": "Top tier, still runs on one PC",
       "needs": 20,
       "bytes": 17396927584
     },
@@ -164,6 +178,7 @@
         "general"
       ],
       "good": "ใกล้เคียงตัวใหญ่",
+      "good_en": "Close to the big ones",
       "needs": 22.8,
       "bytes": 19851336288
     },
@@ -175,6 +190,7 @@
         "coding"
       ],
       "good": "โค้ดดิ้งตัวท็อป",
+      "good_en": "Top coding model",
       "needs": 22.8,
       "bytes": 19851336384
     },
@@ -186,6 +202,7 @@
         "reasoning"
       ],
       "good": "คิดหนักแม่นยำ",
+      "good_en": "Deep, accurate reasoning",
       "needs": 22.8,
       "bytes": 19851335552
     },
@@ -197,6 +214,7 @@
         "general"
       ],
       "good": "คุณภาพระดับสูงสุด",
+      "good_en": "Highest quality",
       "needs": 48.9,
       "bytes": 42520398528
     },
@@ -208,6 +226,7 @@
         "reasoning"
       ],
       "good": "เหตุผลระดับสูงสุด",
+      "good_en": "Top-tier reasoning",
       "needs": 48.9,
       "bytes": 42520395616
     },
@@ -219,6 +238,7 @@
         "general"
       ],
       "good": "จิ๋วแต่แจ๋วจาก Microsoft",
+      "good_en": "Tiny but capable, by Microsoft",
       "needs": 3.2,
       "bytes": 2491874624
     },
@@ -231,6 +251,7 @@
         "reasoning"
       ],
       "good": "รุ่นใหม่ เล็กแต่คิดได้",
+      "good_en": "New gen, small but thinks",
       "needs": 3.2,
       "bytes": 2497280480
     },
@@ -243,6 +264,7 @@
         "reasoning"
       ],
       "good": "รุ่นใหม่ สมดุลดี มีโหมดคิด",
+      "good_en": "New gen, balanced with think mode",
       "needs": 6,
       "bytes": 5225374496
     },
@@ -255,6 +277,7 @@
         "reasoning"
       ],
       "good": "โมเดลเปิดจาก OpenAI มีโหมดคิด",
+      "good_en": "Open model from OpenAI, with think mode",
       "needs": 15.9,
       "bytes": 13793422144
     },
@@ -267,6 +290,7 @@
         "reasoning"
       ],
       "good": "รุ่นใหม่ ฉลาดขึ้นชัด",
+      "good_en": "New gen, clearly smarter",
       "needs": 10.7,
       "bytes": 9276184896
     },
@@ -279,6 +303,7 @@
         "reasoning"
       ],
       "good": "Microsoft เก่งเหตุผล/คณิต",
+      "good_en": "Microsoft, strong reasoning/math",
       "needs": 10.4,
       "bytes": 9053114464
     },
@@ -291,6 +316,7 @@
         "reasoning"
       ],
       "good": "MoE เร็ว ฉลาดใกล้ตัวใหญ่",
+      "good_en": "MoE, fast, near big-model smarts",
       "needs": 21.3,
       "bytes": 18556685856
     },
@@ -302,6 +328,7 @@
         "coding"
       ],
       "good": "โค้ดดิ้งรุ่นใหม่ตัวแรง",
+      "good_en": "New-gen coding powerhouse",
       "needs": 21.3,
       "bytes": 18556688736
     },
@@ -314,6 +341,7 @@
         "reasoning"
       ],
       "good": "รุ่นใหม่ตัวท็อปรันเครื่องเดียว",
+      "good_en": "New-gen top, runs on one PC",
       "needs": 23.2,
       "bytes": 20201240160
     },
@@ -325,6 +353,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 4372811712,
       "needs": 5.1,
       "auto": true
@@ -337,6 +366,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 1629509152,
       "needs": 2.3,
       "auto": true
@@ -349,6 +379,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 5443143296,
       "needs": 6.3,
       "auto": true
@@ -361,6 +392,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 15628378336,
       "needs": 18,
       "auto": true
@@ -373,6 +405,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 4661211424,
       "needs": 5.4,
       "auto": true
@@ -385,6 +418,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 39969732096,
       "needs": 46,
       "auto": true
@@ -397,6 +431,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 7381382048,
       "needs": 8.5,
       "auto": true
@@ -409,6 +444,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 16947541728,
       "needs": 19.5,
       "auto": true
@@ -421,6 +457,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 19868969920,
       "needs": 22.8,
       "auto": true
@@ -433,6 +470,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 1036034688,
       "needs": 1.7,
       "auto": true
@@ -445,6 +483,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 2741180928,
       "needs": 3.4,
       "auto": true
@@ -457,6 +496,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 3389971840,
       "needs": 4.1,
       "auto": true
@@ -469,6 +509,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 6594462816,
       "needs": 7.6,
       "auto": true
@@ -481,6 +522,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 17420420832,
       "needs": 20,
       "auto": true
@@ -493,6 +535,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 2176177120,
       "needs": 2.9,
       "auto": true
@@ -505,6 +548,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 7897125664,
       "needs": 9.1,
       "auto": true
@@ -517,6 +561,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 4108916992,
       "needs": 4.8,
       "auto": true
@@ -529,6 +574,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 7365834752,
       "needs": 8.5,
       "auto": true
@@ -541,6 +587,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 19466529024,
       "needs": 22.4,
       "auto": true
@@ -553,6 +600,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 1678447520,
       "needs": 2.4,
       "auto": true
@@ -565,6 +613,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 5011844064,
       "needs": 5.8,
       "auto": true
@@ -577,6 +626,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 394990624,
       "needs": 1.1,
       "auto": true
@@ -589,6 +639,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 1120235328,
       "needs": 1.8,
       "auto": true
@@ -601,6 +652,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 2330085408,
       "needs": 3,
       "auto": true
@@ -613,6 +665,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 4511906976,
       "needs": 5.2,
       "auto": true
@@ -625,6 +678,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 8179322304,
       "needs": 9.4,
       "auto": true
@@ -637,6 +691,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 3826781184,
       "needs": 4.5,
       "auto": true
@@ -649,6 +704,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 7366808800,
       "needs": 8.5,
       "auto": true
@@ -661,6 +717,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 38873223392,
       "needs": 44.7,
       "auto": true
@@ -673,6 +730,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 16837919680,
       "needs": 19.4,
       "auto": true
@@ -685,6 +743,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 21718480960,
       "needs": 25,
       "auto": true
@@ -697,6 +756,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 21718480960,
       "needs": 25,
       "auto": true
@@ -709,6 +769,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 352151968,
       "needs": 1.1,
       "auto": true
@@ -721,6 +782,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 934952032,
       "needs": 1.6,
       "auto": true
@@ -733,6 +795,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 4431388192,
       "needs": 5.1,
       "auto": true
@@ -745,6 +808,7 @@
         "general"
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
       "bytes": 41231735264,
       "needs": 47.4,
       "auto": true
@@ -757,6 +821,7 @@
         "coding"
       ],
       "good": "สายเขียนโค้ด (เพิ่มอัตโนมัติ)",
+      "good_en": "Coding model (auto-added)",
       "bytes": 3825898144,
       "needs": 4.5,
       "auto": true
@@ -769,6 +834,7 @@
         "coding"
       ],
       "good": "สายเขียนโค้ด (เพิ่มอัตโนมัติ)",
+      "good_en": "Coding model (auto-added)",
       "bytes": 7365948416,
       "needs": 8.5,
       "auto": true
@@ -781,6 +847,7 @@
         "coding"
       ],
       "good": "สายเขียนโค้ด (เพิ่มอัตโนมัติ)",
+      "good_en": "Coding model (auto-added)",
       "bytes": 19052048512,
       "needs": 21.9,
       "auto": true
@@ -793,6 +860,7 @@
         "coding"
       ],
       "good": "สายเขียนโค้ด (เพิ่มอัตโนมัติ)",
+      "good_en": "Coding model (auto-added)",
       "bytes": 38872431040,
       "needs": 44.7,
       "auto": true

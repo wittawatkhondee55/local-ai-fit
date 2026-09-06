@@ -4,17 +4,17 @@ import type { Budget, Cat, Model, Recommendation, State } from "./types";
 export function computeBudget(s: State): Budget {
   let pool: string, total: number, reserve: number, ceil: number;
   if (s.gpuClass === "discrete" && s.vram > 0) {
-    pool = "VRAM";
+    pool = "pool_vram";
     total = s.vram;
     reserve = Math.min(Math.max(s.vram * 0.15, 0.8), 3);
     ceil = Math.min(s.ram - 3, s.ram * 0.7); // ล้นเข้า RAM ได้ (ช้าลง)
   } else if (s.gpuClass === "apple") {
-    pool = "หน่วยความจำรวม";
+    pool = "pool_unified";
     total = s.ram;
     reserve = Math.max(4, s.ram * 0.35);
     ceil = total - reserve;
   } else {
-    pool = "RAM";
+    pool = "pool_ram";
     total = s.ram;
     reserve = Math.max(4, s.ram * 0.4);
     ceil = Math.max(total - 3, total * 0.75);
@@ -54,27 +54,27 @@ export function recommend(s: State, models: Model[]): Recommendation {
     if (m.needs > b.ceil) break;
   }
 
-  let lamp: Recommendation["lamp"], vtxt: string, speed: string;
+  let lamp: Recommendation["lamp"], vkey: string, speedKey: string;
   if (!comfy) {
     lamp = "bad";
-    vtxt = "เครื่องค่อนข้างจำกัด — เริ่มจากรุ่นเล็ก";
-    speed = "พอไหว";
+    vkey = "v_limited";
+    speedKey = "sp_ok";
   } else if (s.gpuClass === "discrete" && best.needs <= s.vram) {
     lamp = "good";
-    vtxt = "รันได้สบาย · เร่งด้วยการ์ดจอ";
-    speed = "เร็ว ⚡";
+    vkey = "v_gpu";
+    speedKey = "sp_fast";
   } else if (s.gpuClass === "apple") {
     lamp = "good";
-    vtxt = "รันได้ดี · เร่งด้วย Metal";
-    speed = "เร็ว–ปานกลาง";
+    vkey = "v_apple";
+    speedKey = "sp_applemid";
   } else if (s.gpuClass === "discrete") {
     lamp = "warn";
-    vtxt = "รันได้ แต่โมเดลล้นเข้าแรม จะช้าลง";
-    speed = "ปานกลาง";
+    vkey = "v_spill";
+    speedKey = "sp_mid";
   } else {
     lamp = "warn";
-    vtxt = "รันบน CPU ได้ · จะช้ากว่ามีการ์ดจอ";
-    speed = "ปานกลาง–ช้า";
+    vkey = "v_cpu";
+    speedKey = "sp_midslow";
   }
 
   return {
@@ -82,9 +82,9 @@ export function recommend(s: State, models: Model[]): Recommendation {
     lighter: lighter && lighter !== best ? lighter : null,
     heavier,
     b,
-    speed,
+    speedKey,
     lamp,
-    vtxt,
+    vkey,
     comfy,
   };
 }
