@@ -3,7 +3,7 @@ import type { Cat, GpuClass, Model, OS, State } from "./types";
 import { FALLBACK_MODELS, loadCatalog } from "./catalog";
 import { scan, detectOS } from "./detect";
 import { classifyGPU } from "./gpu-table";
-import { renderAll, renderHowto, renderRanking, syncInputs } from "./render";
+import { renderAll, renderCodingAgent, renderHowto, renderRanking, syncInputs } from "./render";
 import { initTheme } from "./theme";
 import { applyStatic, getLang, setLang, t, type Lang } from "./i18n";
 
@@ -27,6 +27,7 @@ let rankCat: Cat = "general";
 
 function render(): void {
   renderAll(state, models, generatedAt, selectedTag);
+  renderCodingAgent(state, models);
   renderRanking(models, rankCat);
 }
 function updateLangBtn(): void {
@@ -153,19 +154,23 @@ function wire(): void {
     });
   });
 
-  // ปุ่มคัดลอกทั้งชุด (ติดตั้ง + รัน)
-  $("copyAll").addEventListener("click", () => {
-    const all = `${$("cmdInstall").textContent}\n${$("cmdRun").textContent}`;
-    const btn = $("copyAll");
-    copyToClipboard(all, () => {
-      btn.textContent = t("copyall_done");
-      btn.classList.add("done");
-      setTimeout(() => {
-        btn.textContent = t("copyall");
-        btn.classList.remove("done");
-      }, 1600);
+  // ปุ่มคัดลอกทั้งชุด
+  const wireCopyAll = (btnId: string, ids: string[]) => {
+    const btn = $(btnId);
+    btn.addEventListener("click", () => {
+      const all = ids.map((i) => $(i).textContent).join("\n");
+      copyToClipboard(all, () => {
+        btn.textContent = t("copyall_done");
+        btn.classList.add("done");
+        setTimeout(() => {
+          btn.textContent = t("copyall");
+          btn.classList.remove("done");
+        }, 1600);
+      });
     });
-  });
+  };
+  wireCopyAll("copyAll", ["cmdInstall", "cmdRun"]);
+  wireCopyAll("copyAllAgent", ["cmdAgentPull", "cmdAgentInstall", "cmdAgentRun"]);
 }
 
 /** อ่านค่าที่คำสั่ง "ตรวจแบบแม่นยำ" ส่งกลับมาทาง query (?ram=&vram=&gpu=) */

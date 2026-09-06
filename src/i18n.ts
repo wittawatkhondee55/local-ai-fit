@@ -84,6 +84,19 @@ const TH: Record<string, string> = {
   step3_t: "อยากได้หน้าจอแชตสวยๆ (ไม่บังคับ)",
   step3_b_html:
     'ใช้ <a href="https://lmstudio.ai" target="_blank" rel="noopener">LM Studio</a> (มี UI ในตัว) หรือ <a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a> (หน้าตาคล้าย ChatGPT ต่อกับ Ollama) — ถ้าจะทำเป็น<b>เว็บให้คนอื่นใช้</b> ต่อ Open WebUI แล้วเปิดพอร์ตออกไปได้เลย',
+  sec_agent: "ตั้ง Coding Agent (แบบ Claude Code)",
+  agent_intro_html:
+    "อยากได้ผู้ช่วยเขียนโค้ดแบบ Claude Code บนเครื่องตัวเอง? ต้องมี 2 ส่วน: <b>โมเดล (สมอง)</b> + <b>เครื่องมือสั่งงาน (harness)</b> — ด้านล่างจับคู่ให้ตามสเปกเครื่องคุณแล้ว",
+  agent_model_label: "โมเดล (สมอง) ที่เครื่องคุณรันไหว",
+  agent_harness_label: "เครื่องมือสั่งงาน (harness)",
+  agent_harness_val_html:
+    '<b>Aider</b> — pair programmer ในเทอร์มินัล ใกล้ Claude Code ที่สุด · ถนัด VS Code ใช้ <a href="https://github.com/cline/cline" target="_blank" rel="noopener">Cline</a> ได้',
+  agent_step_pull: "1 · โหลดโมเดลเขียนโค้ด",
+  agent_step_install: "2 · ติดตั้ง Aider (ต้องมี Python)",
+  agent_step_run: "3 · เปิด Aider ต่อกับ Ollama",
+  agent_run_hint: "รันในโฟลเดอร์โปรเจกต์ที่อยากให้ช่วย แล้วพิมพ์สั่งได้เลย (คล้ายที่เราคุยกันอยู่นี่)",
+  agent_note_html:
+    "⚠️ คุณภาพยังห่างจาก Claude อยู่บ้าง โดยเฉพาะงานหลายขั้น · โมเดลใหญ่ (30B+) เก่งกว่าแต่ต้อง VRAM เยอะ · อ่านเพิ่มที่ <a href=\"https://aider.chat\" target=\"_blank\" rel=\"noopener\">aider.chat</a>",
   sec_howto: "คู่มือแบบละเอียด (สำหรับมือใหม่)",
   howto_intro: "ไม่เคยลงมาก่อนก็ทำตามได้ ทีละขั้น — ใช้เวลาไม่เกิน 10 นาที",
   sec_ranking: "จัดอันดับโมเดล",
@@ -191,6 +204,19 @@ const EN: Record<string, string> = {
   step3_t: "Want a nicer chat UI? (optional)",
   step3_b_html:
     'Use <a href="https://lmstudio.ai" target="_blank" rel="noopener">LM Studio</a> (built-in UI) or <a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a> (ChatGPT-like, connects to Ollama) — to make a <b>site others can use</b>, put Open WebUI in front and expose it.',
+  sec_agent: "Set up a coding agent (like Claude Code)",
+  agent_intro_html:
+    "Want a Claude Code-style coding assistant on your own PC? You need two parts: a <b>model (the brain)</b> + an <b>agent tool (harness)</b> — paired below to match your specs.",
+  agent_model_label: "Model (brain) your PC can run",
+  agent_harness_label: "Agent tool (harness)",
+  agent_harness_val_html:
+    '<b>Aider</b> — a terminal pair programmer, closest to Claude Code · prefer VS Code? use <a href="https://github.com/cline/cline" target="_blank" rel="noopener">Cline</a>',
+  agent_step_pull: "1 · Pull the coding model",
+  agent_step_install: "2 · Install Aider (needs Python)",
+  agent_step_run: "3 · Launch Aider with Ollama",
+  agent_run_hint: "Run it inside the project folder you want help with, then just type (like this chat).",
+  agent_note_html:
+    "⚠️ Quality still trails Claude, especially multi-step work · bigger models (30B+) are stronger but need more VRAM · learn more at <a href=\"https://aider.chat\" target=\"_blank\" rel=\"noopener\">aider.chat</a>",
   sec_howto: "Step-by-step guide (for beginners)",
   howto_intro: "Never installed one before? Follow along step by step — under 10 minutes.",
   sec_ranking: "Model ranking",

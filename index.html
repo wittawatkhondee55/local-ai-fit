@@ -152,13 +152,51 @@
     </section>
 
     <section>
-      <div class="sec-head"><span class="sec-num">04</span><h2 data-i18n="sec_howto"></h2></div>
+      <div class="sec-head"><span class="sec-num">04</span><h2 data-i18n="sec_agent"></h2>
+        <button class="btn-copyall" id="copyAllAgent" type="button" data-i18n="copyall"></button>
+      </div>
+      <p class="howto-intro" data-i18n-html="agent_intro_html"></p>
+      <div class="panel pad">
+        <div class="agent-pick">
+          <div class="agent-row"><span class="agent-lbl" data-i18n="agent_model_label"></span><span class="agent-val" id="agentModel"></span></div>
+          <div class="agent-row"><span class="agent-lbl" data-i18n="agent_harness_label"></span><span class="agent-val" data-i18n-html="agent_harness_val_html"></span></div>
+        </div>
+        <div class="steps" style="margin-top:16px">
+          <div class="step">
+            <div class="step-n">1</div>
+            <div class="step-body">
+              <div class="st" data-i18n="agent_step_pull"></div>
+              <div class="cmd"><code id="cmdAgentPull"></code><button class="copy" data-target="cmdAgentPull" data-i18n="copy"></button></div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n">2</div>
+            <div class="step-body">
+              <div class="st" data-i18n="agent_step_install"></div>
+              <div class="cmd"><code id="cmdAgentInstall">pip install aider-install &amp;&amp; aider-install</code><button class="copy" data-target="cmdAgentInstall" data-i18n="copy"></button></div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n">3</div>
+            <div class="step-body">
+              <div class="st" data-i18n="agent_step_run"></div>
+              <div class="cmd"><code id="cmdAgentRun"></code><button class="copy" data-target="cmdAgentRun" data-i18n="copy"></button></div>
+              <div class="altcmd" data-i18n="agent_run_hint"></div>
+            </div>
+          </div>
+        </div>
+        <p class="rank-note" data-i18n-html="agent_note_html"></p>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="sec-num">05</span><h2 data-i18n="sec_howto"></h2></div>
       <p class="howto-intro" data-i18n="howto_intro"></p>
       <div class="panel pad"><div class="howto" id="howtoList"></div></div>
     </section>
 
     <section>
-      <div class="sec-head"><span class="sec-num">05</span><h2 data-i18n="sec_ranking"></h2></div>
+      <div class="sec-head"><span class="sec-num">06</span><h2 data-i18n="sec_ranking"></h2></div>
       <div style="margin-bottom:14px">
         <div class="segmented" id="rankTabs" role="tablist">
           <button class="tab" role="tab" data-rank="general" aria-selected="true" data-i18n="task_general"></button>
@@ -171,7 +209,7 @@
     </section>
 
     <section>
-      <div class="sec-head"><span class="sec-num">06</span><h2 data-i18n="sec_catalog"></h2></div>
+      <div class="sec-head"><span class="sec-num">07</span><h2 data-i18n="sec_catalog"></h2></div>
       <div class="tablewrap">
         <table id="catalog">
           <thead><tr><th data-i18n="th_model"></th><th data-i18n="th_size"></th><th data-i18n="th_mem"></th><th data-i18n="th_skill"></th></tr></thead>

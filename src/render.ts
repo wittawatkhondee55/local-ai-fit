@@ -71,6 +71,16 @@ function renderCatalog(models: Model[], best: Model): void {
     });
 }
 
+/** จับคู่โมเดล coding + harness ตามสเปกเครื่อง */
+export function renderCodingAgent(state: State, models: Model[]): void {
+  const rc = recommend({ ...state, task: "coding" }, models);
+  const cm = rc.best;
+  $("agentModel").innerHTML =
+    `<b>${cm.name}</b> · ${cm.size} · ~${gb(cm.needs)}GB · ${t(rc.speedKey)}`;
+  $("cmdAgentPull").textContent = "ollama pull " + cm.tag;
+  $("cmdAgentRun").textContent = "aider --model ollama_chat/" + cm.tag;
+}
+
 export function renderRanking(models: Model[], cat: Cat): void {
   const box = $("rankList");
   box.innerHTML = "";
