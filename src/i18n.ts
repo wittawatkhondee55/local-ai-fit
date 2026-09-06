@@ -24,7 +24,12 @@ const TH: Record<string, string> = {
   lbl_vram: "VRAM การ์ดจอ (GB)",
   lbl_os: "ระบบปฏิบัติการ",
   hint_specs_html:
-    "บราวเซอร์อ่านค่าได้แค่คร่าวๆ (โดยเฉพาะ RAM ที่มักโชว์สูงสุด 8GB และ VRAM ที่เดาจากชื่อรุ่น) — <b>ปรับตัวเลขให้ตรงเครื่องคุณ</b> เพื่อคำแนะนำที่แม่นที่สุด",
+    "บราวเซอร์อ่านค่าได้แค่คร่าวๆ (โดยเฉพาะ RAM ที่มักโชว์สูงสุด 8GB และ VRAM ที่เดาจากชื่อรุ่น) — <b>ปรับตัวเลขให้ตรงเครื่องคุณ</b> หรือใช้ “ตรวจแบบแม่นยำ” ด้านล่าง",
+  precise_summary: "🎯 อยากได้ค่าเป๊ะ? กดดูวิธีตรวจแบบแม่นยำ",
+  precise_intro_html:
+    "บราวเซอร์อ่าน RAM/VRAM ตรงๆ ไม่ได้ (ถูกจำกัดเพื่อความเป็นส่วนตัว) — วางคำสั่ง<b>อ่านค่าอย่างเดียว</b>นี้ใน PowerShell (Windows) หรือ Terminal (Mac/Linux) แล้วมันจะเปิดหน้านี้พร้อมกรอกค่าจริงให้อัตโนมัติ",
+  precise_note: "🔒 ปลอดภัย: คำสั่งนี้แค่อ่านสเปกแล้วเปิดลิงก์ ไม่แก้ไข/ติดตั้งอะไรในเครื่อง",
+  det_precise: "ตรวจแม่นยำจากเครื่อง ✓",
   sec_reco: "โมเดลที่แนะนำ",
   task_general: "ใช้งานทั่วไป",
   task_coding: "เขียนโค้ด",
@@ -124,7 +129,12 @@ const EN: Record<string, string> = {
   lbl_vram: "GPU VRAM (GB)",
   lbl_os: "Operating system",
   hint_specs_html:
-    "The browser can only read specs roughly (RAM often caps at 8GB, VRAM is guessed from the model name) — <b>adjust the numbers to match your PC</b> for the most accurate advice.",
+    "The browser can only read specs roughly (RAM often caps at 8GB, VRAM is guessed from the model name) — <b>adjust the numbers to match your PC</b>, or use the “Precise scan” below.",
+  precise_summary: "🎯 Want exact numbers? Show the precise scan",
+  precise_intro_html:
+    "Browsers can't read RAM/VRAM directly (privacy limits) — paste this <b>read-only</b> command into PowerShell (Windows) or Terminal (Mac/Linux); it opens this page with your real specs filled in automatically.",
+  precise_note: "🔒 Safe: it only reads specs and opens a link — it installs and changes nothing.",
+  det_precise: "Precise scan from your PC ✓",
   sec_reco: "Recommended model",
   task_general: "General",
   task_coding: "Coding",

@@ -1,7 +1,8 @@
 import "./styles.css";
 import type { Cat, GpuClass, Model, OS, State } from "./types";
 import { FALLBACK_MODELS, loadCatalog } from "./catalog";
-import { scan } from "./detect";
+import { scan, detectOS } from "./detect";
+import { classifyGPU } from "./gpu-table";
 import { renderAll, renderHowto, syncInputs } from "./render";
 import { initTheme } from "./theme";
 import { applyStatic, getLang, setLang, t, type Lang } from "./i18n";
@@ -156,11 +157,46 @@ function wire(): void {
   });
 }
 
+/** อ่านค่าที่คำสั่ง "ตรวจแบบแม่นยำ" ส่งกลับมาทาง query (?ram=&vram=&gpu=) */
+function readPreciseParams(): boolean {
+  const p = new URLSearchParams(location.search);
+  if (!["ram", "vram", "gpu"].some((k) => p.has(k))) return false;
+
+  const ram = parseFloat(p.get("ram") || "");
+  if (ram > 0) state.ram = Math.round(ram);
+
+  const gpu = p.get("gpu");
+  if (gpu) {
+    state.gpuName = gpu;
+    state.gpuClass = classifyGPU(gpu);
+  }
+  const vram = parseFloat(p.get("vram") || "");
+  if (state.gpuClass === "apple") {
+    state.vram = state.ram;
+  } else if (!isNaN(vram) && vram > 0) {
+    state.vram = Math.round(vram);
+    if (vram >= 3) state.gpuClass = "discrete";
+  }
+
+  state.os = detectOS();
+  state.live = true;
+  state.ramDet = { k: "det_precise" };
+  state.vramDet = { k: "det_precise" };
+  try {
+    history.replaceState(null, "", location.pathname);
+  } catch {
+    /* ignore */
+  }
+  return true;
+}
+
 async function init(): Promise<void> {
   initTheme();
   wire();
+  const precise = readPreciseParams();
   applyAll(); // แปลภาษา + วาดครั้งแรกด้วย fallback
   syncInputs(state);
+  if (precise) document.querySelector(".sec-head")?.scrollIntoView({ behavior: "smooth", block: "start" });
   const cat = await loadCatalog();
   models = cat.models;
   generatedAt = cat.generatedAt;

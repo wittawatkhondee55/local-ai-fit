@@ -41,6 +41,19 @@ function fillAlt(id: string, m: Model | null, descKey: string | null, selectedTa
 
 const CAT_KEY: Record<Cat, string> = { general: "cat_general", coding: "cat_coding", reasoning: "cat_reasoning" };
 
+// คำสั่ง "ตรวจแบบแม่นยำ" (อ่านค่าอย่างเดียว) — เปิดหน้านี้พร้อม query ค่าจริง __O__ = origin
+const CMD_WIN =
+  "$k=gp 'HKLM:\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e968-e325-11ce-bfc1-08002be10318}\\*' -ea 0|?{$_.'HardwareInformation.qwMemorySize'}|sort 'HardwareInformation.qwMemorySize' -desc|select -First 1;$r=[math]::Round((gcim Win32_ComputerSystem).TotalPhysicalMemory/1GB);$v=[math]::Round($k.'HardwareInformation.qwMemorySize'/1GB);start \"__O__/?ram=$r&vram=$v&gpu=$([uri]::EscapeDataString($k.DriverDesc))\"";
+const CMD_MAC =
+  "R=$(($(sysctl -n hw.memsize)/1073741824));G=$(system_profiler SPDisplaysDataType|awk -F': ' '/Chipset Model/{print $2;exit}'|sed 's/ /%20/g');open \"__O__/?ram=$R&gpu=$G\"";
+const CMD_LINUX =
+  "R=$(free -g|awk '/Mem:/{print $2}');G=$(lspci|grep -iE 'vga|3d'|head -1|sed 's/.*: //;s/ /%20/g');V=$(nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits 2>/dev/null|head -1);V=$(( ${V:-0}/1024 ));xdg-open \"__O__/?ram=$R&vram=$V&gpu=$G\"";
+
+function preciseCmd(os: string): string {
+  const tmpl = os === "win" ? CMD_WIN : os === "mac" ? CMD_MAC : CMD_LINUX;
+  return tmpl.replace("__O__", location.origin);
+}
+
 function renderCatalog(models: Model[], best: Model): void {
   const tb = $("catBody");
   tb.innerHTML = "";
@@ -121,6 +134,7 @@ export function renderAll(state: State, models: Model[], generatedAt?: string, s
   );
   $("cmdRun").textContent = "ollama run " + sel.tag;
   $("step2Title").innerHTML = t("step2_title", { name: sel.name, size: gb(diskGB(sel)) });
+  $("cmdPrecise").textContent = preciseCmd(state.os);
 
   const osLabel = state.os === "win" ? "Windows" : state.os === "mac" ? "macOS" : "Linux";
   $("osLine").textContent =
