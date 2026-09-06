@@ -71,14 +71,19 @@ function renderCatalog(models: Model[], best: Model): void {
     });
 }
 
-/** จับคู่โมเดล coding + harness ตามสเปกเครื่อง */
-export function renderCodingAgent(state: State, models: Model[]): void {
-  const rc = recommend({ ...state, task: "coding" }, models);
-  const cm = rc.best;
+function speedKeyFor(state: State, needs: number): string {
+  if (state.gpuClass === "discrete" && needs <= state.vram) return "sp_fast";
+  if (state.gpuClass === "apple") return "sp_applemid";
+  if (state.gpuClass === "discrete") return "sp_mid";
+  return "sp_midslow";
+}
+
+/** จับคู่ harness (Aider) กับ "โมเดลที่เลือกด้านบน" */
+export function renderCodingAgent(state: State, model: Model): void {
   $("agentModel").innerHTML =
-    `<b>${cm.name}</b> · ${cm.size} · ~${gb(cm.needs)}GB · ${t(rc.speedKey)}`;
-  $("cmdAgentPull").textContent = "ollama pull " + cm.tag;
-  $("cmdAgentRun").textContent = "aider --model ollama_chat/" + cm.tag;
+    `<b>${model.name}</b> · ${model.size} · ~${gb(model.needs)}GB · ${t(speedKeyFor(state, model.needs))}`;
+  $("cmdAgentPull").textContent = "ollama pull " + model.tag;
+  $("cmdAgentRun").textContent = "aider --model ollama_chat/" + model.tag;
 }
 
 export function renderRanking(models: Model[], cat: Cat): void {
@@ -115,7 +120,7 @@ export function renderHowto(): void {
   });
 }
 
-export function renderAll(state: State, models: Model[], generatedAt?: string, selectedTag?: string): void {
+export function renderAll(state: State, models: Model[], generatedAt?: string, selectedTag?: string): Model {
   const r = recommend(state, models);
   const b = r.b;
   const m = r.best;
@@ -187,6 +192,7 @@ export function renderAll(state: State, models: Model[], generatedAt?: string, s
   }
 
   renderCatalog(models, m);
+  return sel;
 }
 
 /** sync ค่า state -> input ในฟอร์ม */

@@ -87,7 +87,7 @@ const TH: Record<string, string> = {
   sec_agent: "ตั้ง Coding Agent (แบบ Claude Code)",
   agent_intro_html:
     "อยากได้ผู้ช่วยเขียนโค้ดแบบ Claude Code บนเครื่องตัวเอง? ต้องมี 2 ส่วน: <b>โมเดล (สมอง)</b> + <b>เครื่องมือสั่งงาน (harness)</b> — ด้านล่างจับคู่ให้ตามสเปกเครื่องคุณแล้ว",
-  agent_model_label: "โมเดล (สมอง) ที่เครื่องคุณรันไหว",
+  agent_model_label: "โมเดล (สมอง) — ตามที่เลือกด้านบน",
   agent_harness_label: "เครื่องมือสั่งงาน (harness)",
   agent_harness_val_html:
     '<b>Aider</b> — pair programmer ในเทอร์มินัล ใกล้ Claude Code ที่สุด · ถนัด VS Code ใช้ <a href="https://github.com/cline/cline" target="_blank" rel="noopener">Cline</a> ได้',
@@ -207,7 +207,7 @@ const EN: Record<string, string> = {
   sec_agent: "Set up a coding agent (like Claude Code)",
   agent_intro_html:
     "Want a Claude Code-style coding assistant on your own PC? You need two parts: a <b>model (the brain)</b> + an <b>agent tool (harness)</b> — paired below to match your specs.",
-  agent_model_label: "Model (brain) your PC can run",
+  agent_model_label: "Model (brain) — as picked above",
   agent_harness_label: "Agent tool (harness)",
   agent_harness_val_html:
     '<b>Aider</b> — a terminal pair programmer, closest to Claude Code · prefer VS Code? use <a href="https://github.com/cline/cline" target="_blank" rel="noopener">Cline</a>',

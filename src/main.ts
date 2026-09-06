@@ -26,8 +26,8 @@ let selectedTag: string | undefined;
 let rankCat: Cat = "general";
 
 function render(): void {
-  renderAll(state, models, generatedAt, selectedTag);
-  renderCodingAgent(state, models);
+  const selected = renderAll(state, models, generatedAt, selectedTag);
+  renderCodingAgent(state, selected);
   renderRanking(models, rankCat);
 }
 function updateLangBtn(): void {
