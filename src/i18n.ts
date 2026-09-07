@@ -74,6 +74,7 @@ const TH: Record<string, string> = {
   step1_t: "ติดตั้ง Ollama (โปรแกรมรันโมเดล ฟรี)",
   copy: "คัดลอก",
   copied: "คัดลอกแล้ว ✓",
+  docs_link: "คู่มือ",
   install_alt_win_html:
     'ไม่มี winget? โหลดตัวติดตั้ง <a href="https://ollama.com/download/windows" target="_blank" rel="noopener">ollama.com/download/windows</a>',
   install_alt_mac_html:
@@ -310,6 +311,107 @@ export const HOWTO: Record<Lang, { t: string; b: string }[]> = {
       b: 'Install <a href="https://lmstudio.ai" target="_blank" rel="noopener">LM Studio</a> (built-in UI) or <a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a> (ChatGPT-like with a model switcher) · to let friends use it over the internet safely, pair <a href="https://tailscale.com/download" target="_blank" rel="noopener">Tailscale</a> with Open WebUI.',
     },
   ],
+};
+
+export type HarnessId = "aider" | "cline" | "openhands";
+export interface HarnessStep {
+  t: string;
+  cmd?: string;
+  html?: string;
+}
+export interface HarnessInfo {
+  name: string;
+  blurb: string;
+  docs: string;
+  steps: HarnessStep[];
+}
+
+const OPENHANDS_RUN =
+  "docker run -it --rm --pull=always -p 3000:3000 --add-host host.docker.internal:host-gateway -v /var/run/docker.sock:/var/run/docker.sock docker.all-hands.dev/all-hands-ai/openhands:latest";
+
+export const HARNESS: Record<Lang, Record<HarnessId, HarnessInfo>> = {
+  th: {
+    aider: {
+      name: "Aider",
+      blurb: "เทอร์มินัล ใกล้ Claude Code สุด แก้ไฟล์ + git อัตโนมัติ",
+      docs: "https://aider.chat",
+      steps: [
+        { t: "โหลดโมเดล", cmd: "ollama pull {tag}" },
+        { t: "ติดตั้ง Aider (ต้องมี Python)", cmd: "pip install aider-install && aider-install" },
+        { t: "เปิดในโฟลเดอร์โปรเจกต์ ต่อ Ollama", cmd: "aider --model ollama_chat/{tag}" },
+      ],
+    },
+    cline: {
+      name: "Cline",
+      blurb: "ส่วนขยายใน VS Code แบบ agent เต็มตัว (รองรับ MCP)",
+      docs: "https://github.com/cline/cline",
+      steps: [
+        { t: "โหลดโมเดล", cmd: "ollama pull {tag}" },
+        {
+          t: "ติดตั้ง VS Code + ส่วนขยาย Cline",
+          html: 'ลง <a href="https://code.visualstudio.com" target="_blank" rel="noopener">VS Code</a> → แท็บ Extensions ค้นหา “Cline” กด Install',
+        },
+        {
+          t: "ตั้งค่าให้ต่อ Ollama",
+          html: 'ใน Cline: Settings → API Provider = <b>Ollama</b> · Base URL <code>http://localhost:11434</code> · Model = <code>{tag}</code>',
+        },
+      ],
+    },
+    openhands: {
+      name: "OpenHands",
+      blurb: "agent อิสระสูง ทำทั้งงานในแซนด์บ็อกซ์ (ผ่าน Docker)",
+      docs: "https://docs.all-hands.dev",
+      steps: [
+        { t: "โหลดโมเดล", cmd: "ollama pull {tag}" },
+        { t: "ติดตั้ง Docker Desktop แล้วรัน OpenHands", cmd: OPENHANDS_RUN },
+        {
+          t: "ตั้งค่าโมเดลใน UI",
+          html: 'เปิด <code>http://localhost:3000</code> → Settings → LLM: โมเดล <code>ollama/{tag}</code> · Base URL <code>http://host.docker.internal:11434</code> (เวอร์ชัน Docker อาจเปลี่ยน ดูคู่มือ)',
+        },
+      ],
+    },
+  },
+  en: {
+    aider: {
+      name: "Aider",
+      blurb: "Terminal, closest to Claude Code, edits files + auto git",
+      docs: "https://aider.chat",
+      steps: [
+        { t: "Pull the model", cmd: "ollama pull {tag}" },
+        { t: "Install Aider (needs Python)", cmd: "pip install aider-install && aider-install" },
+        { t: "Open in your project folder, connect Ollama", cmd: "aider --model ollama_chat/{tag}" },
+      ],
+    },
+    cline: {
+      name: "Cline",
+      blurb: "A full agent extension inside VS Code (MCP support)",
+      docs: "https://github.com/cline/cline",
+      steps: [
+        { t: "Pull the model", cmd: "ollama pull {tag}" },
+        {
+          t: "Install VS Code + the Cline extension",
+          html: 'Install <a href="https://code.visualstudio.com" target="_blank" rel="noopener">VS Code</a> → Extensions tab, search “Cline”, click Install',
+        },
+        {
+          t: "Point it at Ollama",
+          html: 'In Cline: Settings → API Provider = <b>Ollama</b> · Base URL <code>http://localhost:11434</code> · Model = <code>{tag}</code>',
+        },
+      ],
+    },
+    openhands: {
+      name: "OpenHands",
+      blurb: "Highly autonomous agent, runs whole tasks in a sandbox (via Docker)",
+      docs: "https://docs.all-hands.dev",
+      steps: [
+        { t: "Pull the model", cmd: "ollama pull {tag}" },
+        { t: "Install Docker Desktop then run OpenHands", cmd: OPENHANDS_RUN },
+        {
+          t: "Set the model in the UI",
+          html: 'Open <code>http://localhost:3000</code> → Settings → LLM: model <code>ollama/{tag}</code> · Base URL <code>http://host.docker.internal:11434</code> (Docker version may change — see docs)',
+        },
+      ],
+    },
+  },
 };
 
 let lang: Lang = load();

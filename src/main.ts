@@ -5,7 +5,7 @@ import { scan, detectOS } from "./detect";
 import { classifyGPU } from "./gpu-table";
 import { renderAll, renderCodingAgent, renderHowto, renderRanking, syncInputs } from "./render";
 import { initTheme } from "./theme";
-import { applyStatic, getLang, setLang, t, type Lang } from "./i18n";
+import { applyStatic, getLang, setLang, t, type Lang, type HarnessId } from "./i18n";
 
 const $ = (id: string) => document.getElementById(id) as HTMLElement;
 
@@ -24,10 +24,11 @@ let models: Model[] = FALLBACK_MODELS;
 let generatedAt: string | undefined;
 let selectedTag: string | undefined;
 let rankCat: Cat = "general";
+let harness: HarnessId = "aider";
 
 function render(): void {
   const selected = renderAll(state, models, generatedAt, selectedTag);
-  renderCodingAgent(state, selected);
+  renderCodingAgent(state, selected, harness);
   renderRanking(models, rankCat);
 }
 function updateLangBtn(): void {
@@ -115,6 +116,15 @@ function wire(): void {
     });
   });
 
+  document.querySelectorAll<HTMLButtonElement>("#harnessTabs .tab").forEach((t2) => {
+    t2.addEventListener("click", () => {
+      document.querySelectorAll("#harnessTabs .tab").forEach((x) => x.setAttribute("aria-selected", "false"));
+      t2.setAttribute("aria-selected", "true");
+      harness = t2.dataset.harness as HarnessId;
+      render();
+    });
+  });
+
   // เลือกตัวติดตั้ง
   ["recoCard", "altLight", "altHeavy"].forEach((id) => {
     const el = document.getElementById(id);
@@ -170,7 +180,20 @@ function wire(): void {
     });
   };
   wireCopyAll("copyAll", ["cmdInstall", "cmdRun"]);
-  wireCopyAll("copyAllAgent", ["cmdAgentPull", "cmdAgentInstall", "cmdAgentRun"]);
+
+  // คัดลอกทั้งชุดของ agent — อ่านทุกคำสั่งในสเต็ปที่วาดไว้ (เปลี่ยนตาม harness)
+  const agentBtn = $("copyAllAgent");
+  agentBtn.addEventListener("click", () => {
+    const cmds = [...document.querySelectorAll("#agentSteps .cmd code")].map((c) => c.textContent || "");
+    copyToClipboard(cmds.join("\n"), () => {
+      agentBtn.textContent = t("copyall_done");
+      agentBtn.classList.add("done");
+      setTimeout(() => {
+        agentBtn.textContent = t("copyall");
+        agentBtn.classList.remove("done");
+      }, 1600);
+    });
+  });
 }
 
 /** อ่านค่าที่คำสั่ง "ตรวจแบบแม่นยำ" ส่งกลับมาทาง query (?ram=&vram=&gpu=) */

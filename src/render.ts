@@ -1,7 +1,7 @@
 import type { Cat, Model, State } from "./types";
 import { recommend } from "./recommend";
 import { shortGPU } from "./gpu-table";
-import { getLang, t, td, HOWTO } from "./i18n";
+import { getLang, t, td, HOWTO, HARNESS, type HarnessId } from "./i18n";
 
 const $ = (id: string) => document.getElementById(id) as HTMLElement;
 
@@ -78,12 +78,51 @@ function speedKeyFor(state: State, needs: number): string {
   return "sp_midslow";
 }
 
-/** จับคู่ harness (Aider) กับ "โมเดลที่เลือกด้านบน" */
-export function renderCodingAgent(state: State, model: Model): void {
+/** จับคู่ harness ที่เลือก กับ "โมเดลที่เลือกด้านบน" แล้ววาดขั้นตอน */
+export function renderCodingAgent(state: State, model: Model, harness: HarnessId): void {
+  const info = HARNESS[getLang()][harness];
   $("agentModel").innerHTML =
     `<b>${model.name}</b> · ${model.size} · ~${gb(model.needs)}GB · ${t(speedKeyFor(state, model.needs))}`;
-  $("cmdAgentPull").textContent = "ollama pull " + model.tag;
-  $("cmdAgentRun").textContent = "aider --model ollama_chat/" + model.tag;
+  $("agentHarness").innerHTML =
+    `<b>${info.name}</b> — ${info.blurb} · <a href="${info.docs}" target="_blank" rel="noopener">${t("docs_link")}</a>`;
+
+  const box = $("agentSteps");
+  box.innerHTML = "";
+  info.steps.forEach((s, i) => {
+    const step = document.createElement("div");
+    step.className = "step";
+    const n = document.createElement("div");
+    n.className = "step-n";
+    n.textContent = String(i + 1);
+    const body = document.createElement("div");
+    body.className = "step-body";
+    const st = document.createElement("div");
+    st.className = "st";
+    st.textContent = s.t;
+    body.appendChild(st);
+
+    if (s.cmd) {
+      const wrap = document.createElement("div");
+      wrap.className = "cmd";
+      const code = document.createElement("code");
+      code.textContent = s.cmd.replace(/\{tag\}/g, model.tag);
+      const btn = document.createElement("button");
+      btn.className = "copy";
+      btn.id = "agentCmd" + i;
+      code.id = "agentCode" + i;
+      btn.dataset.target = code.id;
+      btn.textContent = t("copy");
+      wrap.append(code, btn);
+      body.appendChild(wrap);
+    } else if (s.html) {
+      const alt = document.createElement("div");
+      alt.className = "altcmd";
+      alt.innerHTML = s.html.replace(/\{tag\}/g, model.tag);
+      body.appendChild(alt);
+    }
+    step.append(n, body);
+    box.appendChild(step);
+  });
 }
 
 export function renderRanking(models: Model[], cat: Cat): void {

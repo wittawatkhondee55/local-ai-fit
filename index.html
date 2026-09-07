@@ -156,35 +156,19 @@
         <button class="btn-copyall" id="copyAllAgent" type="button" data-i18n="copyall"></button>
       </div>
       <p class="howto-intro" data-i18n-html="agent_intro_html"></p>
+      <div style="margin-bottom:14px">
+        <div class="segmented" id="harnessTabs" role="tablist" aria-label="harness">
+          <button class="tab" role="tab" data-harness="aider" aria-selected="true">Aider</button>
+          <button class="tab" role="tab" data-harness="cline" aria-selected="false">Cline</button>
+          <button class="tab" role="tab" data-harness="openhands" aria-selected="false">OpenHands</button>
+        </div>
+      </div>
       <div class="panel pad">
         <div class="agent-pick">
           <div class="agent-row"><span class="agent-lbl" data-i18n="agent_model_label"></span><span class="agent-val" id="agentModel"></span></div>
-          <div class="agent-row"><span class="agent-lbl" data-i18n="agent_harness_label"></span><span class="agent-val" data-i18n-html="agent_harness_val_html"></span></div>
+          <div class="agent-row"><span class="agent-lbl" data-i18n="agent_harness_label"></span><span class="agent-val" id="agentHarness"></span></div>
         </div>
-        <div class="steps" style="margin-top:16px">
-          <div class="step">
-            <div class="step-n">1</div>
-            <div class="step-body">
-              <div class="st" data-i18n="agent_step_pull"></div>
-              <div class="cmd"><code id="cmdAgentPull"></code><button class="copy" data-target="cmdAgentPull" data-i18n="copy"></button></div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-n">2</div>
-            <div class="step-body">
-              <div class="st" data-i18n="agent_step_install"></div>
-              <div class="cmd"><code id="cmdAgentInstall">pip install aider-install &amp;&amp; aider-install</code><button class="copy" data-target="cmdAgentInstall" data-i18n="copy"></button></div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-n">3</div>
-            <div class="step-body">
-              <div class="st" data-i18n="agent_step_run"></div>
-              <div class="cmd"><code id="cmdAgentRun"></code><button class="copy" data-target="cmdAgentRun" data-i18n="copy"></button></div>
-              <div class="altcmd" data-i18n="agent_run_hint"></div>
-            </div>
-          </div>
-        </div>
+        <div class="steps" id="agentSteps" style="margin-top:16px"></div>
         <p class="rank-note" data-i18n-html="agent_note_html"></p>
       </div>
     </section>
