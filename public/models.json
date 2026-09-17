@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T03:25:21.284Z",
+  "generatedAt": "2026-09-17T18:38:21.467Z",
   "source": "ollama registry (registry.ollama.ai)",
   "models": [
     {
@@ -182,6 +182,7 @@
       "good_en": "Top tier, still runs on one PC",
       "score": 85,
       "needs": 20,
+      "aider": 4.9,
       "bytes": 17396927584
     },
     {
@@ -208,6 +209,7 @@
       "good_en": "Top coding model",
       "score": 88,
       "needs": 22.8,
+      "aider": 16.4,
       "bytes": 19851336384
     },
     {
@@ -371,6 +373,7 @@
       "good_en": "New-gen top, runs on one PC",
       "score": 88,
       "needs": 23.2,
+      "aider": 40,
       "bytes": 20201240160
     },
     {
@@ -790,58 +793,6 @@
       "auto": true
     },
     {
-      "name": "Qwen2 0.5B",
-      "tag": "qwen2:0.5b",
-      "size": "0.5B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 352151968,
-      "needs": 1.1,
-      "auto": true
-    },
-    {
-      "name": "Qwen2 1.5B",
-      "tag": "qwen2:1.5b",
-      "size": "1.5B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 934952032,
-      "needs": 1.6,
-      "auto": true
-    },
-    {
-      "name": "Qwen2 7B",
-      "tag": "qwen2:7b",
-      "size": "7B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 4431388192,
-      "needs": 5.1,
-      "auto": true
-    },
-    {
-      "name": "Qwen2 72B",
-      "tag": "qwen2:72b",
-      "size": "72B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 41231735264,
-      "needs": 47.4,
-      "auto": true
-    },
-    {
       "name": "Codellama 7B",
       "tag": "codellama:7b",
       "size": "7B",
@@ -891,6 +842,58 @@
       "good_en": "Coding model (auto-added)",
       "bytes": 38872431040,
       "needs": 44.7,
+      "auto": true
+    },
+    {
+      "name": "Qwen2 0.5B",
+      "tag": "qwen2:0.5b",
+      "size": "0.5B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 352151968,
+      "needs": 1.1,
+      "auto": true
+    },
+    {
+      "name": "Qwen2 1.5B",
+      "tag": "qwen2:1.5b",
+      "size": "1.5B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 934952032,
+      "needs": 1.6,
+      "auto": true
+    },
+    {
+      "name": "Qwen2 7B",
+      "tag": "qwen2:7b",
+      "size": "7B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 4431388192,
+      "needs": 5.1,
+      "auto": true
+    },
+    {
+      "name": "Qwen2 72B",
+      "tag": "qwen2:72b",
+      "size": "72B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 41231735264,
+      "needs": 47.4,
       "auto": true
     }
   ]

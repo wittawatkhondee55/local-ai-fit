@@ -222,6 +222,8 @@ tr.hit td.name::after{content:"แนะนำ";font-family:var(--mono);font-siz
   transition:width .5s cubic-bezier(.2,.7,.3,1);}
 .rank-score{font-family:var(--mono);font-weight:600;font-size:1.05rem;color:var(--ink);width:34px;
   text-align:right;flex:none;font-variant-numeric:tabular-nums;}
+.rank-bench{font-family:var(--mono);font-size:.7rem;color:var(--good);background:var(--good-wash);
+  border-radius:20px;padding:1px 8px;font-weight:600;vertical-align:middle;}
 .rank-note{font-size:.78rem;color:var(--ink-faint);margin-top:12px;line-height:1.5;}
 
 .auto-badge{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;

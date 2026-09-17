@@ -137,10 +137,14 @@ export function renderRanking(models: Model[], cat: Cat): void {
     row.className = "rank-row" + (i < 3 ? " top" : "");
     const medal = ["🥇", "🥈", "🥉"][i] ?? String(i + 1);
     const pct = Math.max(6, ((m.score as number) / max) * 100);
+    const bench =
+      typeof m.aider === "number"
+        ? ` <span class="rank-bench" title="Aider polyglot coding pass-rate (aider.chat)">Aider ${m.aider}%</span>`
+        : "";
     row.innerHTML =
       `<span class="rank-no">${medal}</span>` +
       `<div class="rank-main">` +
-      `<div class="rank-name">${m.name}</div>` +
+      `<div class="rank-name">${m.name}${bench}</div>` +
       `<div class="rank-bar"><div class="rank-fill" style="width:${pct}%"></div></div>` +
       `</div>` +
       `<span class="rank-score">${m.score}</span>`;

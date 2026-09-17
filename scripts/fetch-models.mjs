@@ -62,6 +62,35 @@ async function fetchTags(name) {
   }
 }
 
+// คะแนน coding จริงจาก Aider polyglot leaderboard (% pass-rate) — เอาค่าดีสุดต่อชื่อ
+async function fetchAiderScores() {
+  try {
+    const res = await fetch(
+      "https://raw.githubusercontent.com/Aider-AI/aider/main/aider/website/_data/polyglot_leaderboard.yml",
+      { headers: { "User-Agent": "local-ai-fit/1.0" } },
+    );
+    if (!res.ok) return new Map();
+    const txt = await res.text();
+    const map = new Map();
+    let cur = null;
+    for (const line of txt.split(/\r?\n/)) {
+      const m = line.match(/^\s*model:\s*(.+?)\s*$/);
+      if (m) {
+        cur = m[1].replace(/^["']|["']$/g, "");
+        continue;
+      }
+      const p = line.match(/^\s*pass_rate_2:\s*([\d.]+)/);
+      if (p && cur) {
+        const v = parseFloat(p[1]);
+        if (v > (map.get(cur) || 0)) map.set(cur, v);
+      }
+    }
+    return map;
+  } catch {
+    return new Map();
+  }
+}
+
 async function discoverLibraryNames() {
   try {
     const res = await fetch(LIBRARY, { headers: { "User-Agent": "local-ai-fit/1.0" } });
@@ -112,13 +141,20 @@ const AUTO_BLURB_EN = {
 
 async function main() {
   const seed = JSON.parse(await readFile(join(__dirname, "models.seed.json"), "utf8"));
+  const aiderScores = await fetchAiderScores();
   const out = [];
   let ok = 0;
   let fallback = 0;
+  let benchMatched = 0;
 
   // 1) โมเดลคิวเรต
   for (const s of seed.models) {
     const model = { name: s.name, tag: s.tag, size: s.size, cats: s.cats, good: s.good, good_en: s.good_en, score: s.score, needs: s.needsFallback };
+    if (s.bench && aiderScores.has(s.bench)) {
+      model.aider = aiderScores.get(s.bench);
+      benchMatched++;
+      console.log(`  ⭐ ${s.tag.padEnd(24)} Aider coding ${model.aider}% (${s.bench})`);
+    }
     const [name, ver] = s.tag.split(":");
     try {
       const bytes = await fetchManifestBytes(name, ver);
@@ -177,7 +213,7 @@ async function main() {
   };
   await mkdir(join(ROOT, "public"), { recursive: true });
   await writeFile(join(ROOT, "public", "models.json"), JSON.stringify(payload, null, 2) + "\n", "utf8");
-  console.log(`\n✅ เขียน public/models.json — คิวเรต ${seed.models.length} (สำเร็จ ${ok}/fallback ${fallback}) · auto-add ${added}`);
+  console.log(`\n✅ เขียน public/models.json — คิวเรต ${seed.models.length} (สำเร็จ ${ok}/fallback ${fallback}) · auto-add ${added} · Aider bench ${benchMatched}`);
 }
 
 main().catch((e) => {

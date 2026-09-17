@@ -20,6 +20,8 @@ export interface Model {
   auto?: boolean;
   /** คะแนนคุณภาพโดยประมาณ 0-100 (ค่าคิวเรต ใช้จัดอันดับ) */
   score?: number;
+  /** คะแนน coding จริงจาก Aider polyglot leaderboard (% pass-rate) ถ้ามี */
+  aider?: number;
 }
 
 export interface Catalog {
