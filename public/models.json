@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T18:38:21.467Z",
+  "generatedAt": "2026-09-21T03:22:00.219Z",
   "source": "ollama registry (registry.ollama.ai)",
   "models": [
     {
@@ -429,32 +429,6 @@
       "auto": true
     },
     {
-      "name": "Llama3 8B",
-      "tag": "llama3:8b",
-      "size": "8B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 4661211424,
-      "needs": 5.4,
-      "auto": true
-    },
-    {
-      "name": "Llama3 70B",
-      "tag": "llama3:70b",
-      "size": "70B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 39969732096,
-      "needs": 46,
-      "auto": true
-    },
-    {
       "name": "Gemma4 12B",
       "tag": "gemma4:12b",
       "size": "12B",
@@ -491,6 +465,32 @@
       "good_en": "From the Ollama library (auto-added)",
       "bytes": 19868969920,
       "needs": 22.8,
+      "auto": true
+    },
+    {
+      "name": "Llama3 8B",
+      "tag": "llama3:8b",
+      "size": "8B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 4661211424,
+      "needs": 5.4,
+      "auto": true
+    },
+    {
+      "name": "Llama3 70B",
+      "tag": "llama3:70b",
+      "size": "70B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 39969732096,
+      "needs": 46,
       "auto": true
     },
     {
