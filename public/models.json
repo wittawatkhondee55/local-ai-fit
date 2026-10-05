@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T03:42:09.426Z",
+  "generatedAt": "2026-10-05T04:05:53.015Z",
   "source": "ollama registry (registry.ollama.ai)",
   "models": [
     {
@@ -377,19 +377,6 @@
       "bytes": 20201240160
     },
     {
-      "name": "Mistral 7B",
-      "tag": "mistral:7b",
-      "size": "7B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 4372811712,
-      "needs": 5.1,
-      "auto": true
-    },
-    {
       "name": "Gemma2 2B",
       "tag": "gemma2:2b",
       "size": "2B",
@@ -429,6 +416,19 @@
       "auto": true
     },
     {
+      "name": "Mistral 7B",
+      "tag": "mistral:7b",
+      "size": "7B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 4372811712,
+      "needs": 5.1,
+      "auto": true
+    },
+    {
       "name": "Gemma4 12B",
       "tag": "gemma4:12b",
       "size": "12B",
@@ -437,7 +437,7 @@
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
       "good_en": "From the Ollama library (auto-added)",
-      "bytes": 7381382048,
+      "bytes": 7381383680,
       "needs": 8.5,
       "auto": true
     },
@@ -450,8 +450,21 @@
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
       "good_en": "From the Ollama library (auto-added)",
-      "bytes": 16947541728,
-      "needs": 19.5,
+      "bytes": 17074419072,
+      "needs": 19.6,
+      "auto": true
+    },
+    {
+      "name": "Gemma4 26B MoE",
+      "tag": "gemma4:26b-a4b",
+      "size": "26B MoE",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 17074419072,
+      "needs": 19.6,
       "auto": true
     },
     {
@@ -463,8 +476,8 @@
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
       "good_en": "From the Ollama library (auto-added)",
-      "bytes": 19868969920,
-      "needs": 22.8,
+      "bytes": 18670033120,
+      "needs": 21.5,
       "auto": true
     },
     {
@@ -502,8 +515,8 @@
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
       "good_en": "From the Ollama library (auto-added)",
-      "bytes": 1036034688,
-      "needs": 1.7,
+      "bytes": 811843520,
+      "needs": 1.5,
       "auto": true
     },
     {
@@ -515,8 +528,8 @@
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
       "good_en": "From the Ollama library (auto-added)",
-      "bytes": 2741180928,
-      "needs": 3.4,
+      "bytes": 2012012448,
+      "needs": 2.7,
       "auto": true
     },
     {
@@ -528,8 +541,8 @@
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
       "good_en": "From the Ollama library (auto-added)",
-      "bytes": 3389971840,
-      "needs": 4.1,
+      "bytes": 2648593216,
+      "needs": 3.3,
       "auto": true
     },
     {
@@ -541,8 +554,8 @@
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
       "good_en": "From the Ollama library (auto-added)",
-      "bytes": 6594462816,
-      "needs": 7.6,
+      "bytes": 5629109120,
+      "needs": 6.5,
       "auto": true
     },
     {
@@ -554,8 +567,8 @@
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
       "good_en": "From the Ollama library (auto-added)",
-      "bytes": 17420420832,
-      "needs": 20,
+      "bytes": 16547399008,
+      "needs": 19,
       "auto": true
     },
     {
@@ -881,19 +894,6 @@
       "good_en": "From the Ollama library (auto-added)",
       "bytes": 6140392576,
       "needs": 7.1,
-      "auto": true
-    },
-    {
-      "name": "Qwen3-VL 30B",
-      "tag": "qwen3-vl:30b",
-      "size": "30B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 19595386752,
-      "needs": 22.5,
       "auto": true
     }
   ]
