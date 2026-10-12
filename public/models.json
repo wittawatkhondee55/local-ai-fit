@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-05T04:05:53.015Z",
+  "generatedAt": "2026-10-12T04:22:40.756Z",
   "source": "ollama registry (registry.ollama.ai)",
   "models": [
     {
@@ -64,8 +64,8 @@
       "good": "เล็กแต่ฉลาด อ่านภาพได้",
       "good_en": "Small but smart, reads images",
       "score": 60,
-      "needs": 4,
-      "bytes": 3338792448
+      "needs": 3.2,
+      "bytes": 2499012288
     },
     {
       "name": "DeepSeek-R1 7B",
@@ -129,8 +129,8 @@
       "good": "ฉลาดขึ้นชัด",
       "good_en": "Noticeably smarter",
       "score": 77,
-      "needs": 9.4,
-      "bytes": 8149180896
+      "needs": 8.4,
+      "bytes": 7309830496
     },
     {
       "name": "Qwen2.5-Coder 14B",
@@ -181,9 +181,9 @@
       "good": "ระดับท็อปที่ยังรันเครื่องเดียวได้",
       "good_en": "Top tier, still runs on one PC",
       "score": 85,
-      "needs": 20,
+      "needs": 19,
       "aider": 4.9,
-      "bytes": 17396927584
+      "bytes": 16555661472
     },
     {
       "name": "Qwen2.5 32B",
@@ -304,7 +304,7 @@
       "good_en": "Open model from OpenAI, with think mode",
       "score": 84,
       "needs": 15.9,
-      "bytes": 13793422144
+      "bytes": 13793422816
     },
     {
       "name": "Qwen3 14B",
