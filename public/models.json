@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T04:22:40.756Z",
+  "generatedAt": "2026-10-19T03:18:07.940Z",
   "source": "ollama registry (registry.ollama.ai)",
   "models": [
     {
@@ -767,45 +767,6 @@
       "auto": true
     },
     {
-      "name": "Qwen3.6 27B",
-      "tag": "qwen3.6:27b",
-      "size": "27B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 16837919680,
-      "needs": 19.4,
-      "auto": true
-    },
-    {
-      "name": "Qwen3.6 35B",
-      "tag": "qwen3.6:35b",
-      "size": "35B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 21718480960,
-      "needs": 25,
-      "auto": true
-    },
-    {
-      "name": "Qwen3.6 35B MoE",
-      "tag": "qwen3.6:35b-a3b",
-      "size": "35B MoE",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 21718480960,
-      "needs": 25,
-      "auto": true
-    },
-    {
       "name": "Codellama 7B",
       "tag": "codellama:7b",
       "size": "7B",
@@ -855,6 +816,45 @@
       "good_en": "Coding model (auto-added)",
       "bytes": 38872431040,
       "needs": 44.7,
+      "auto": true
+    },
+    {
+      "name": "Qwen3.6 27B",
+      "tag": "qwen3.6:27b",
+      "size": "27B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 16837919680,
+      "needs": 19.4,
+      "auto": true
+    },
+    {
+      "name": "Qwen3.6 35B",
+      "tag": "qwen3.6:35b",
+      "size": "35B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 21718480960,
+      "needs": 25,
+      "auto": true
+    },
+    {
+      "name": "Qwen3.6 35B MoE",
+      "tag": "qwen3.6:35b-a3b",
+      "size": "35B MoE",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 21718480960,
+      "needs": 25,
       "auto": true
     },
     {
