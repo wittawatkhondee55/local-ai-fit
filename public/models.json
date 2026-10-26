@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T03:18:07.940Z",
+  "generatedAt": "2026-10-26T03:15:51.684Z",
   "source": "ollama registry (registry.ollama.ai)",
   "models": [
     {
@@ -879,8 +879,8 @@
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
       "good_en": "From the Ollama library (auto-added)",
-      "bytes": 3295612832,
-      "needs": 4,
+      "bytes": 2497281600,
+      "needs": 3.2,
       "auto": true
     },
     {
@@ -892,8 +892,8 @@
       ],
       "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
       "good_en": "From the Ollama library (auto-added)",
-      "bytes": 6140392576,
-      "needs": 7.1,
+      "bytes": 5028391424,
+      "needs": 5.8,
       "auto": true
     }
   ]
