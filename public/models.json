@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-26T03:15:51.684Z",
+  "generatedAt": "2026-11-02T04:29:22.015Z",
   "source": "ollama registry (registry.ollama.ai)",
   "models": [
     {
@@ -728,45 +728,6 @@
       "auto": true
     },
     {
-      "name": "Llama2 7B",
-      "tag": "llama2:7b",
-      "size": "7B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 3826781184,
-      "needs": 4.5,
-      "auto": true
-    },
-    {
-      "name": "Llama2 13B",
-      "tag": "llama2:13b",
-      "size": "13B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 7366808800,
-      "needs": 8.5,
-      "auto": true
-    },
-    {
-      "name": "Llama2 70B",
-      "tag": "llama2:70b",
-      "size": "70B",
-      "cats": [
-        "general"
-      ],
-      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
-      "good_en": "From the Ollama library (auto-added)",
-      "bytes": 38873223392,
-      "needs": 44.7,
-      "auto": true
-    },
-    {
       "name": "Codellama 7B",
       "tag": "codellama:7b",
       "size": "7B",
@@ -815,6 +776,45 @@
       "good": "สายเขียนโค้ด (เพิ่มอัตโนมัติ)",
       "good_en": "Coding model (auto-added)",
       "bytes": 38872431040,
+      "needs": 44.7,
+      "auto": true
+    },
+    {
+      "name": "Llama2 7B",
+      "tag": "llama2:7b",
+      "size": "7B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 3826781184,
+      "needs": 4.5,
+      "auto": true
+    },
+    {
+      "name": "Llama2 13B",
+      "tag": "llama2:13b",
+      "size": "13B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 7366808800,
+      "needs": 8.5,
+      "auto": true
+    },
+    {
+      "name": "Llama2 70B",
+      "tag": "llama2:70b",
+      "size": "70B",
+      "cats": [
+        "general"
+      ],
+      "good": "โมเดลจาก Ollama library (เพิ่มอัตโนมัติ)",
+      "good_en": "From the Ollama library (auto-added)",
+      "bytes": 38873223392,
       "needs": 44.7,
       "auto": true
     },
